@@ -14,13 +14,19 @@
 		42C6FD6918E3BCF000913D4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD6818E3BCF000913D4D /* main.m */; };
 		42C6FD6D18E3BCF000913D4D /* QFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD6C18E3BCF000913D4D /* QFAppDelegate.m */; };
 		42C6FD7018E3BCF000913D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C6FD6E18E3BCF000913D4D /* Main.storyboard */; };
-		42C6FD7318E3BCF000913D4D /* QFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD7218E3BCF000913D4D /* QFViewController.m */; };
 		42C6FD7518E3BCF000913D4D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42C6FD7418E3BCF000913D4D /* Images.xcassets */; };
 		42C6FD7C18E3BCF000913D4D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD7B18E3BCF000913D4D /* XCTest.framework */; };
 		42C6FD7D18E3BCF000913D4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD5C18E3BCF000913D4D /* Foundation.framework */; };
 		42C6FD7E18E3BCF000913D4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD6018E3BCF000913D4D /* UIKit.framework */; };
 		42C6FD8618E3BCF000913D4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42C6FD8418E3BCF000913D4D /* InfoPlist.strings */; };
 		42C6FD8818E3BCF000913D4D /* QuantumFinanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD8718E3BCF000913D4D /* QuantumFinanceTests.m */; };
+		42C6FD9618E3D30B00913D4D /* QFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD9518E3D30B00913D4D /* QFNavigationController.m */; };
+		42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD9818E4096500913D4D /* QFBaseViewController.m */; };
+		42C6FD9C18E4098D00913D4D /* QFSubBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD9B18E4098D00913D4D /* QFSubBaseViewController.m */; };
+		42C6FD9F18E40AC900913D4D /* QFRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FD9E18E40AC900913D4D /* QFRootViewController.m */; };
+		42C6FDA318E40E6A00913D4D /* QFNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDA218E40E6A00913D4D /* QFNewsManager.m */; };
+		42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDA618E416BD00913D4D /* QFUtils.m */; };
+		BB561C99788C4305AB508515 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 692AF7000FC448DEAB8DE17E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +51,27 @@
 		42C6FD6B18E3BCF000913D4D /* QFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QFAppDelegate.h; sourceTree = "<group>"; };
 		42C6FD6C18E3BCF000913D4D /* QFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QFAppDelegate.m; sourceTree = "<group>"; };
 		42C6FD6F18E3BCF000913D4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		42C6FD7118E3BCF000913D4D /* QFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QFViewController.h; sourceTree = "<group>"; };
-		42C6FD7218E3BCF000913D4D /* QFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QFViewController.m; sourceTree = "<group>"; };
 		42C6FD7418E3BCF000913D4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		42C6FD7A18E3BCF000913D4D /* QuantumFinanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuantumFinanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6FD7B18E3BCF000913D4D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		42C6FD8318E3BCF000913D4D /* QuantumFinanceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuantumFinanceTests-Info.plist"; sourceTree = "<group>"; };
 		42C6FD8518E3BCF000913D4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		42C6FD8718E3BCF000913D4D /* QuantumFinanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuantumFinanceTests.m; sourceTree = "<group>"; };
+		42C6FD9418E3D30B00913D4D /* QFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNavigationController.h; sourceTree = "<group>"; };
+		42C6FD9518E3D30B00913D4D /* QFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNavigationController.m; sourceTree = "<group>"; };
+		42C6FD9718E4096500913D4D /* QFBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFBaseViewController.h; sourceTree = "<group>"; };
+		42C6FD9818E4096500913D4D /* QFBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFBaseViewController.m; sourceTree = "<group>"; };
+		42C6FD9A18E4098D00913D4D /* QFSubBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFSubBaseViewController.h; sourceTree = "<group>"; };
+		42C6FD9B18E4098D00913D4D /* QFSubBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFSubBaseViewController.m; sourceTree = "<group>"; };
+		42C6FD9D18E40AC900913D4D /* QFRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFRootViewController.h; sourceTree = "<group>"; };
+		42C6FD9E18E40AC900913D4D /* QFRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFRootViewController.m; sourceTree = "<group>"; };
+		42C6FDA018E40DA500913D4D /* QFConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QFConstant.h; sourceTree = "<group>"; };
+		42C6FDA118E40E6A00913D4D /* QFNewsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNewsManager.h; sourceTree = "<group>"; };
+		42C6FDA218E40E6A00913D4D /* QFNewsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNewsManager.m; sourceTree = "<group>"; };
+		42C6FDA518E416BD00913D4D /* QFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFUtils.h; sourceTree = "<group>"; };
+		42C6FDA618E416BD00913D4D /* QFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFUtils.m; sourceTree = "<group>"; };
+		692AF7000FC448DEAB8DE17E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1488F1C07024959A1EE240F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +82,7 @@
 				42C6FD5F18E3BCF000913D4D /* CoreGraphics.framework in Frameworks */,
 				42C6FD6118E3BCF000913D4D /* UIKit.framework in Frameworks */,
 				42C6FD5D18E3BCF000913D4D /* Foundation.framework in Frameworks */,
+				BB561C99788C4305AB508515 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +106,7 @@
 				42C6FD8118E3BCF000913D4D /* QuantumFinanceTests */,
 				42C6FD5B18E3BCF000913D4D /* Frameworks */,
 				42C6FD5A18E3BCF000913D4D /* Products */,
+				C1488F1C07024959A1EE240F /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +126,7 @@
 				42C6FD5E18E3BCF000913D4D /* CoreGraphics.framework */,
 				42C6FD6018E3BCF000913D4D /* UIKit.framework */,
 				42C6FD7B18E3BCF000913D4D /* XCTest.framework */,
+				692AF7000FC448DEAB8DE17E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,11 +134,13 @@
 		42C6FD6218E3BCF000913D4D /* QuantumFinance */ = {
 			isa = PBXGroup;
 			children = (
+				42C6FDA418E416BD00913D4D /* Utils */,
+				42C6FD9118E3C7C200913D4D /* Model */,
+				42C6FD9218E3C7C200913D4D /* View */,
+				42C6FD9318E3C7C200913D4D /* ViewController */,
 				42C6FD6B18E3BCF000913D4D /* QFAppDelegate.h */,
 				42C6FD6C18E3BCF000913D4D /* QFAppDelegate.m */,
 				42C6FD6E18E3BCF000913D4D /* Main.storyboard */,
-				42C6FD7118E3BCF000913D4D /* QFViewController.h */,
-				42C6FD7218E3BCF000913D4D /* QFViewController.m */,
 				42C6FD7418E3BCF000913D4D /* Images.xcassets */,
 				42C6FD6318E3BCF000913D4D /* Supporting Files */,
 			);
@@ -126,6 +150,7 @@
 		42C6FD6318E3BCF000913D4D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				42C6FDA018E40DA500913D4D /* QFConstant.h */,
 				42C6FD6418E3BCF000913D4D /* QuantumFinance-Info.plist */,
 				42C6FD6518E3BCF000913D4D /* InfoPlist.strings */,
 				42C6FD6818E3BCF000913D4D /* main.m */,
@@ -152,6 +177,46 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		42C6FD9118E3C7C200913D4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42C6FDA118E40E6A00913D4D /* QFNewsManager.h */,
+				42C6FDA218E40E6A00913D4D /* QFNewsManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		42C6FD9218E3C7C200913D4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		42C6FD9318E3C7C200913D4D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				42C6FD9418E3D30B00913D4D /* QFNavigationController.h */,
+				42C6FD9518E3D30B00913D4D /* QFNavigationController.m */,
+				42C6FD9718E4096500913D4D /* QFBaseViewController.h */,
+				42C6FD9818E4096500913D4D /* QFBaseViewController.m */,
+				42C6FD9A18E4098D00913D4D /* QFSubBaseViewController.h */,
+				42C6FD9B18E4098D00913D4D /* QFSubBaseViewController.m */,
+				42C6FD9D18E40AC900913D4D /* QFRootViewController.h */,
+				42C6FD9E18E40AC900913D4D /* QFRootViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		42C6FDA418E416BD00913D4D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				42C6FDA518E416BD00913D4D /* QFUtils.h */,
+				42C6FDA618E416BD00913D4D /* QFUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,9 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42C6FD8B18E3BCF000913D4D /* Build configuration list for PBXNativeTarget "QuantumFinance" */;
 			buildPhases = (
+				F45250CF95D2441C99DC5A45 /* Check Pods Manifest.lock */,
 				42C6FD5518E3BCF000913D4D /* Sources */,
 				42C6FD5618E3BCF000913D4D /* Frameworks */,
 				42C6FD5718E3BCF000913D4D /* Resources */,
+				6D357EE2C8E24649ACCD241F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,14 +312,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6D357EE2C8E24649ACCD241F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F45250CF95D2441C99DC5A45 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		42C6FD5518E3BCF000913D4D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42C6FD7318E3BCF000913D4D /* QFViewController.m in Sources */,
+				42C6FDA318E40E6A00913D4D /* QFNewsManager.m in Sources */,
 				42C6FD6918E3BCF000913D4D /* main.m in Sources */,
+				42C6FD9618E3D30B00913D4D /* QFNavigationController.m in Sources */,
+				42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */,
+				42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */,
+				42C6FD9C18E4098D00913D4D /* QFSubBaseViewController.m in Sources */,
 				42C6FD6D18E3BCF000913D4D /* QFAppDelegate.m in Sources */,
+				42C6FD9F18E40AC900913D4D /* QFRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +481,7 @@
 		};
 		42C6FD8C18E3BCF000913D4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1488F1C07024959A1EE240F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -389,6 +495,7 @@
 		};
 		42C6FD8D18E3BCF000913D4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1488F1C07024959A1EE240F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -461,6 +568,7 @@
 				42C6FD8D18E3BCF000913D4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42C6FD8E18E3BCF000913D4D /* Build configuration list for PBXNativeTarget "QuantumFinanceTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +577,7 @@
 				42C6FD9018E3BCF000913D4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
