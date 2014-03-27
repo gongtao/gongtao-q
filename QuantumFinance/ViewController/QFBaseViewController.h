@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "QFNavigationBar.h"
+
 @interface QFBaseViewController : UIViewController
+
+@property (nonatomic, strong) QFNavigationBar *customNavigationBar;
 
 @end

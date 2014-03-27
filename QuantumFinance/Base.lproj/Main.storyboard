@@ -33,10 +33,92 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Bd0-o9-6nK"/>
+                    <connections>
+                        <segue destination="LmN-ic-DyO" kind="push" identifier="recommendViewController" id="u0r-vh-oNg"/>
+                        <segue destination="SdG-td-NZm" kind="push" identifier="perspectiveViewController" id="Lxy-i1-jho"/>
+                        <segue destination="Z2P-D9-8eA" kind="push" identifier="historyViewController" id="p5f-X9-cR7"/>
+                        <segue destination="PvM-iN-pam" kind="push" identifier="mineViewController" id="vfX-k0-gYY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3c-Pg-Tay" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="470" y="-31"/>
+        </scene>
+        <!--Recommend View Controller - 财赋-->
+        <scene sceneID="Kev-2u-cfw">
+            <objects>
+                <viewController storyboardIdentifier="recommendViewController" title="财赋" id="LmN-ic-DyO" customClass="QFRecommendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U52-jI-NJQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="AVC-WE-vz5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j8C-x2-X7P">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="I91-DO-E5R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JfA-pP-IkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1102" y="-1070"/>
+        </scene>
+        <!--Perspective View Controller - 文章列表-->
+        <scene sceneID="EXw-v1-xt7">
+            <objects>
+                <viewController storyboardIdentifier="perspectiveViewController" title="文章列表" id="SdG-td-NZm" customClass="QFPerspectiveViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eBv-5M-0sg"/>
+                        <viewControllerLayoutGuide type="bottom" id="w0Y-jn-UO1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iyD-bL-WEp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aVL-he-fN6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VIQ-ri-xoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1102" y="-385"/>
+        </scene>
+        <!--History View Controller - 历史回顾-->
+        <scene sceneID="jRa-08-wWD">
+            <objects>
+                <viewController storyboardIdentifier="historyViewController" title="历史回顾" id="Z2P-D9-8eA" customClass="QFHistoryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WWO-JQ-GiD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cdu-Dt-fCc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p9z-Rz-o6T">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PHZ-Of-EXH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G0x-MN-5dO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1102" y="315"/>
+        </scene>
+        <!--Mine View Controller - 我的-->
+        <scene sceneID="Foz-0F-tQL">
+            <objects>
+                <viewController storyboardIdentifier="mineViewController" title="我的" id="PvM-iN-pam" customClass="QFMineViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZAQ-kf-daA"/>
+                        <viewControllerLayoutGuide type="bottom" id="g2p-88-DGk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lbc-mW-Chq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yfV-tq-nrg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xs0-lV-XrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1102" y="1007"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

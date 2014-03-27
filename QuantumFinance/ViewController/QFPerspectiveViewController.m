@@ -1,18 +1,18 @@
 //
-//  QFBaseViewController.m
+//  QFPerspectiveViewController.m
 //  QuantumFinance
 //
 //  Created by 龚涛 on 3/27/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
-#import "QFBaseViewController.h"
+#import "QFPerspectiveViewController.h"
 
-@interface QFBaseViewController ()
+@interface QFPerspectiveViewController ()
 
 @end
 
-@implementation QFBaseViewController
+@implementation QFPerspectiveViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationController.navigationBarHidden = YES;
-    
-    _customNavigationBar = [[QFNavigationBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, IS_IOS7?64.0:44.0)];
-    [self.view addSubview:_customNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning

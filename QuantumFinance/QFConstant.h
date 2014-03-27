@@ -15,4 +15,7 @@
 
 #define IS_IPhone5_or_5s    ([UIScreen mainScreen].bounds.size.width == 568.0)
 
+#define Color_MainBlue              [UIColor colorWithHexString:@"0e9fde"]
+#define Color_DarkBlue              [UIColor colorWithHexString:@"1b4f6d"]
+
 #endif
