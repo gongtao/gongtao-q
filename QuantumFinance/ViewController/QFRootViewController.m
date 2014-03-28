@@ -50,6 +50,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [_subVCDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if (obj != self.currentVC) {
+            UIViewController *vc = (UIViewController *)obj;
+            [vc removeFromParentViewController];
+            [_subVCDic removeObjectForKey:key];
+        }
+    }];
 }
 
 #pragma mark - Private

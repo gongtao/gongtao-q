@@ -50,6 +50,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-  (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    [[SDImageCache sharedImageCache] clearMemory];
+}
+
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.

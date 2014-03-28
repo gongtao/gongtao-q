@@ -24,13 +24,16 @@
     if (self) {
         self.backgroundColor = Color_DarkBlue;
         
+        _selectedView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 80.0, frame.size.height)];
+        _selectedView.backgroundColor = Color_MainBlue;
+        [self addSubview:_selectedView];
+        
         _titleArray = @[@"推荐", @"视角", @"历史", @"我的"];
         __block CGFloat x = 0.0;
         [_titleArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             QFCustomButton *button = [[QFCustomButton alloc] initWithFrame:CGRectMake(x, 0.0, 80.0, frame.size.height)];
             button.imageRect = CGRectMake(28.0, 6.0, 24.0, 24.0);
             button.titleRect = CGRectMake(26.0, 30.0, 28.0, 20.0);
-            button.highlightedBgColor = Color_MainBlue;
             button.titleLabel.font = [UIFont systemFontOfSize:14.0];
             [button setTitle:obj forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -41,6 +44,7 @@
             [self addSubview:button];
             x += 80.0;
         }];
+        
         _lastIndex = -1;
     }
     return self;
@@ -57,13 +61,15 @@
 
 - (void)selectedTagAtIndex:(NSUInteger)index
 {
-    if (_lastIndex != -1) {
-        UIButton *lastButton = (UIButton *)[self viewWithTag:_lastIndex+100];
-        lastButton.selected = NO;
-    }
+//    if (_lastIndex != -1) {
+//        UIButton *lastButton = (UIButton *)[self viewWithTag:_lastIndex+100];
+//    }
     if (index != _lastIndex) {
         UIButton *button = (UIButton *)[self viewWithTag:index+100];
-        button.selected = YES;
+        [UIView animateWithDuration:0.3
+                         animations:^(void){
+                             _selectedView.frame = button.frame;
+                         }];
         if ([self.delegate respondsToSelector:@selector(didSelectTagAtIndex:)]) {
             [self.delegate didSelectTagAtIndex:index];
         }

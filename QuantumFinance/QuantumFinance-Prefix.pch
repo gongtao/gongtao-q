@@ -16,4 +16,5 @@
     #import "QFConstant.h"
     #import <UIColor+HexString.h>
     #import "QFNewsManager.h"
+    #import <UIImageView+WebCache.h>
 #endif

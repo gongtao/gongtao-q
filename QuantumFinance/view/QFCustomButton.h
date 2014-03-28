@@ -14,8 +14,4 @@
 
 @property (nonatomic, assign) CGRect imageRect;
 
-@property (nonatomic, strong) UIColor *bgColor;
-
-@property (nonatomic, strong) UIColor *highlightedBgColor;
-
 @end

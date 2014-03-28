@@ -19,6 +19,8 @@
     NSUInteger _lastIndex;
     
     NSArray *_titleArray;
+    
+    UIView *_selectedView;
 }
 
 @property (nonatomic, weak) id<QFToolBarDelegate> delegate;
