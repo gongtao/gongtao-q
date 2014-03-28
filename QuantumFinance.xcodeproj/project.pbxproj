@@ -34,6 +34,7 @@
 		42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC018E42A1000913D4D /* QFPerspectiveViewController.m */; };
 		42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */; };
 		42C6FDC718E42A3D00913D4D /* QFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC618E42A3D00913D4D /* QFMineViewController.m */; };
+		42DA94C718E5158E008446F6 /* QFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA94C618E5158E008446F6 /* QFAboutViewController.m */; };
 		BB561C99788C4305AB508515 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 692AF7000FC448DEAB8DE17E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,8 @@
 		42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFHistoryViewController.m; sourceTree = "<group>"; };
 		42C6FDC518E42A3D00913D4D /* QFMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFMineViewController.h; sourceTree = "<group>"; };
 		42C6FDC618E42A3D00913D4D /* QFMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFMineViewController.m; sourceTree = "<group>"; };
+		42DA94C518E5158E008446F6 /* QFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFAboutViewController.h; sourceTree = "<group>"; };
+		42DA94C618E5158E008446F6 /* QFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFAboutViewController.m; sourceTree = "<group>"; };
 		692AF7000FC448DEAB8DE17E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1488F1C07024959A1EE240F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +232,8 @@
 				42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */,
 				42C6FDC518E42A3D00913D4D /* QFMineViewController.h */,
 				42C6FDC618E42A3D00913D4D /* QFMineViewController.m */,
+				42DA94C518E5158E008446F6 /* QFAboutViewController.h */,
+				42DA94C618E5158E008446F6 /* QFAboutViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42DA94C718E5158E008446F6 /* QFAboutViewController.m in Sources */,
 				42C6FDC718E42A3D00913D4D /* QFMineViewController.m in Sources */,
 				42C6FDA318E40E6A00913D4D /* QFNewsManager.m in Sources */,
 				42C6FD6918E3BCF000913D4D /* main.m in Sources */,

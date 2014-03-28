@@ -79,6 +79,11 @@
         }
         case 3: {
             identifier = @"mineViewController";
+#warning test
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+            
             break;
         }
         default:
