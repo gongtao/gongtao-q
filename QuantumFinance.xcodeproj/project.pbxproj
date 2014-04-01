@@ -35,6 +35,10 @@
 		42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */; };
 		42C6FDC718E42A3D00913D4D /* QFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC618E42A3D00913D4D /* QFMineViewController.m */; };
 		42DA94C718E5158E008446F6 /* QFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA94C618E5158E008446F6 /* QFAboutViewController.m */; };
+		42F9681D18EA872A00167EBD /* QFNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9681C18EA872A00167EBD /* QFNews.m */; };
+		42F9682018EA872B00167EBD /* QFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9681F18EA872B00167EBD /* QFUser.m */; };
+		42F9682318EA872B00167EBD /* QFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9682218EA872B00167EBD /* QFComment.m */; };
+		42F9682618EA872B00167EBD /* QFProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9682518EA872B00167EBD /* QFProduct.m */; };
 		BB561C99788C4305AB508515 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 692AF7000FC448DEAB8DE17E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +100,14 @@
 		42C6FDC618E42A3D00913D4D /* QFMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFMineViewController.m; sourceTree = "<group>"; };
 		42DA94C518E5158E008446F6 /* QFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFAboutViewController.h; sourceTree = "<group>"; };
 		42DA94C618E5158E008446F6 /* QFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFAboutViewController.m; sourceTree = "<group>"; };
+		42F9681B18EA872A00167EBD /* QFNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNews.h; sourceTree = "<group>"; };
+		42F9681C18EA872A00167EBD /* QFNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNews.m; sourceTree = "<group>"; };
+		42F9681E18EA872B00167EBD /* QFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFUser.h; sourceTree = "<group>"; };
+		42F9681F18EA872B00167EBD /* QFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFUser.m; sourceTree = "<group>"; };
+		42F9682118EA872B00167EBD /* QFComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFComment.h; sourceTree = "<group>"; };
+		42F9682218EA872B00167EBD /* QFComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFComment.m; sourceTree = "<group>"; };
+		42F9682418EA872B00167EBD /* QFProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFProduct.h; sourceTree = "<group>"; };
+		42F9682518EA872B00167EBD /* QFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFProduct.m; sourceTree = "<group>"; };
 		692AF7000FC448DEAB8DE17E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1488F1C07024959A1EE240F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +221,14 @@
 				42C6FDB218E41F5100913D4D /* DataBase.xcdatamodeld */,
 				42C6FDA118E40E6A00913D4D /* QFNewsManager.h */,
 				42C6FDA218E40E6A00913D4D /* QFNewsManager.m */,
+				42F9682418EA872B00167EBD /* QFProduct.h */,
+				42F9682518EA872B00167EBD /* QFProduct.m */,
+				42F9682118EA872B00167EBD /* QFComment.h */,
+				42F9682218EA872B00167EBD /* QFComment.m */,
+				42F9681E18EA872B00167EBD /* QFUser.h */,
+				42F9681F18EA872B00167EBD /* QFUser.m */,
+				42F9681B18EA872A00167EBD /* QFNews.h */,
+				42F9681C18EA872A00167EBD /* QFNews.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,13 +431,17 @@
 				42C6FDB418E41F5100913D4D /* DataBase.xcdatamodeld in Sources */,
 				42C6FD9618E3D30B00913D4D /* QFNavigationController.m in Sources */,
 				42C6FDB118E41AD000913D4D /* QFNavigationBar.m in Sources */,
+				42F9682318EA872B00167EBD /* QFComment.m in Sources */,
+				42F9682618EA872B00167EBD /* QFProduct.m in Sources */,
 				42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */,
+				42F9682018EA872B00167EBD /* QFUser.m in Sources */,
 				42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */,
 				42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */,
 				42C6FD9C18E4098D00913D4D /* QFSubBaseViewController.m in Sources */,
 				42C6FDB818E422B300913D4D /* QFToolBar.m in Sources */,
 				42C6FDBB18E422C700913D4D /* QFCustomButton.m in Sources */,
 				42C6FD6D18E3BCF000913D4D /* QFAppDelegate.m in Sources */,
+				42F9681D18EA872A00167EBD /* QFNews.m in Sources */,
 				42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */,
 				42C6FD9F18E40AC900913D4D /* QFRootViewController.m in Sources */,
 			);
