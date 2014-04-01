@@ -34,15 +34,16 @@
     </entity>
     <entity name="QFUser" representedClassName="QFUser" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isMainUser" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="comment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QFComment" inverseName="user" inverseEntity="QFComment" syncable="YES"/>
         <relationship name="replyComment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QFComment" inverseName="replyUser" inverseEntity="QFComment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="QFProduct" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QFNews" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QFUser" positionX="0" positionY="0" width="0" height="0"/>
         <element name="QFComment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="QFNews" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="QFProduct" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="QFUser" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

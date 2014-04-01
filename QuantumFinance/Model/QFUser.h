@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * avatar;
+@property (nonatomic, retain) NSString * isMainUser;
 @property (nonatomic, retain) NSSet *comment;
 @property (nonatomic, retain) NSSet *replyComment;
 @end

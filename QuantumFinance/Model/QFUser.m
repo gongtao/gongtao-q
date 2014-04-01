@@ -14,6 +14,7 @@
 @dynamic uid;
 @dynamic name;
 @dynamic avatar;
+@dynamic isMainUser;
 @dynamic comment;
 @dynamic replyComment;
 
