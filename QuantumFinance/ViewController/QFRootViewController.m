@@ -82,7 +82,10 @@
 #warning test
 
             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
+            //[self.navigationController pushViewController:vc animated:YES];
+            
+            UIViewController *vcSetting=[self.storyboard instantiateViewControllerWithIdentifier:@"settingViewController"];
+            [self.navigationController pushViewController:vcSetting animated:YES];
             return;
             
             break;

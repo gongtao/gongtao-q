@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26A4442E18EFEDCC00525AB3 /* QFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A4442D18EFEDCC00525AB3 /* QFSettingTableViewController.m */; };
+		26A4443118EFEE6300525AB3 /* QFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A4443018EFEE6300525AB3 /* QFSettingViewController.m */; };
 		42C6FD5D18E3BCF000913D4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD5C18E3BCF000913D4D /* Foundation.framework */; };
 		42C6FD5F18E3BCF000913D4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD5E18E3BCF000913D4D /* CoreGraphics.framework */; };
 		42C6FD6118E3BCF000913D4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD6018E3BCF000913D4D /* UIKit.framework */; };
@@ -53,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26A4442C18EFEDCC00525AB3 /* QFSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFSettingTableViewController.h; sourceTree = "<group>"; };
+		26A4442D18EFEDCC00525AB3 /* QFSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFSettingTableViewController.m; sourceTree = "<group>"; };
+		26A4442F18EFEE6300525AB3 /* QFSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFSettingViewController.h; sourceTree = "<group>"; };
+		26A4443018EFEE6300525AB3 /* QFSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFSettingViewController.m; sourceTree = "<group>"; };
 		42C6FD5918E3BCF000913D4D /* QuantumFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuantumFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6FD5C18E3BCF000913D4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42C6FD5E18E3BCF000913D4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -254,6 +260,10 @@
 				42C6FDC618E42A3D00913D4D /* QFMineViewController.m */,
 				42DA94C518E5158E008446F6 /* QFAboutViewController.h */,
 				42DA94C618E5158E008446F6 /* QFAboutViewController.m */,
+				26A4442F18EFEE6300525AB3 /* QFSettingViewController.h */,
+				26A4443018EFEE6300525AB3 /* QFSettingViewController.m */,
+				26A4442C18EFEDCC00525AB3 /* QFSettingTableViewController.h */,
+				26A4442D18EFEDCC00525AB3 /* QFSettingTableViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -437,7 +447,9 @@
 				42F9682018EA872B00167EBD /* QFUser.m in Sources */,
 				42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */,
 				42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */,
+				26A4443118EFEE6300525AB3 /* QFSettingViewController.m in Sources */,
 				42C6FD9C18E4098D00913D4D /* QFSubBaseViewController.m in Sources */,
+				26A4442E18EFEDCC00525AB3 /* QFSettingTableViewController.m in Sources */,
 				42C6FDB818E422B300913D4D /* QFToolBar.m in Sources */,
 				42C6FDBB18E422C700913D4D /* QFCustomButton.m in Sources */,
 				42C6FD6D18E3BCF000913D4D /* QFAppDelegate.m in Sources */,
