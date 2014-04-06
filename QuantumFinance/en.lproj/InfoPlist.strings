@@ -1,2 +1,5 @@
 /* Localized versions of Info.plist keys */
 
+CFBundleName="财赋";
+
+CFBundleDisplayName="财赋";

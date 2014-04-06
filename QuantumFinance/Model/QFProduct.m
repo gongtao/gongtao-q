@@ -11,6 +11,7 @@
 
 @implementation QFProduct
 
+@dynamic order;
 @dynamic content;
 @dynamic deadline;
 @dynamic eair;

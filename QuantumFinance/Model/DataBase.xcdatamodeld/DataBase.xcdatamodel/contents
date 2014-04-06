@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="QFComment" representedClassName="QFComment" syncable="YES">
         <attribute name="cid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,6 +26,7 @@
         <attribute name="eair" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHistory" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="money" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="pid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,9 +42,9 @@
         <relationship name="replyComment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QFComment" inverseName="replyUser" inverseEntity="QFComment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="QFComment" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QFNews" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QFProduct" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QFUser" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="QFComment" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="QFNews" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="QFProduct" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="QFUser" positionX="0" positionY="0" width="128" height="135"/>
     </elements>
 </model>

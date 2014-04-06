@@ -42,6 +42,9 @@
 		42F9682318EA872B00167EBD /* QFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9682218EA872B00167EBD /* QFComment.m */; };
 		42F9682618EA872B00167EBD /* QFProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9682518EA872B00167EBD /* QFProduct.m */; };
 		BB561C99788C4305AB508515 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 692AF7000FC448DEAB8DE17E /* libPods.a */; };
+		D86368A418F16A8E003C8BC9 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86368A318F16A8E003C8BC9 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D86368A818F174A4003C8BC9 /* QFRecommendProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D86368A718F174A4003C8BC9 /* QFRecommendProductCell.m */; };
+		D86368AA18F1A159003C8BC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D86368A918F1A159003C8BC9 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,11 @@
 		42F9682518EA872B00167EBD /* QFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFProduct.m; sourceTree = "<group>"; };
 		692AF7000FC448DEAB8DE17E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1488F1C07024959A1EE240F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D86368A218F16A8E003C8BC9 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		D86368A318F16A8E003C8BC9 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		D86368A618F174A4003C8BC9 /* QFRecommendProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFRecommendProductCell.h; sourceTree = "<group>"; };
+		D86368A718F174A4003C8BC9 /* QFRecommendProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFRecommendProductCell.m; sourceTree = "<group>"; };
+		D86368A918F1A159003C8BC9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,7 @@
 				42C6FD9118E3C7C200913D4D /* Model */,
 				42C6FDAE18E41ABB00913D4D /* View */,
 				42C6FD9318E3C7C200913D4D /* ViewController */,
+				D86368A018F16A8E003C8BC9 /* ThirdParty */,
 				42C6FD6B18E3BCF000913D4D /* QFAppDelegate.h */,
 				42C6FD6C18E3BCF000913D4D /* QFAppDelegate.m */,
 				42C6FD6E18E3BCF000913D4D /* Main.storyboard */,
@@ -196,6 +205,7 @@
 			children = (
 				42C6FDA018E40DA500913D4D /* QFConstant.h */,
 				42C6FD6418E3BCF000913D4D /* QuantumFinance-Info.plist */,
+				D86368A918F1A159003C8BC9 /* Localizable.strings */,
 				42C6FD6518E3BCF000913D4D /* InfoPlist.strings */,
 				42C6FD6818E3BCF000913D4D /* main.m */,
 				42C6FD6A18E3BCF000913D4D /* QuantumFinance-Prefix.pch */,
@@ -280,6 +290,7 @@
 		42C6FDAE18E41ABB00913D4D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D86368A518F1745B003C8BC9 /* TableCell */,
 				42C6FDB518E4207C00913D4D /* ToolBar */,
 				42C6FDAF18E41AD000913D4D /* QFNavigationBar.h */,
 				42C6FDB018E41AD000913D4D /* QFNavigationBar.m */,
@@ -299,6 +310,32 @@
 			name = ToolBar;
 			path = QuantumFinance/View/ToolBar;
 			sourceTree = SOURCE_ROOT;
+		};
+		D86368A018F16A8E003C8BC9 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				D86368A118F16A8E003C8BC9 /* EGORefreshTableHeaderView */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		D86368A118F16A8E003C8BC9 /* EGORefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				D86368A218F16A8E003C8BC9 /* EGORefreshTableHeaderView.h */,
+				D86368A318F16A8E003C8BC9 /* EGORefreshTableHeaderView.m */,
+			);
+			path = EGORefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
+		D86368A518F1745B003C8BC9 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				D86368A618F174A4003C8BC9 /* QFRecommendProductCell.h */,
+				D86368A718F174A4003C8BC9 /* QFRecommendProductCell.m */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -380,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C6FD7518E3BCF000913D4D /* Images.xcassets in Resources */,
+				D86368AA18F1A159003C8BC9 /* Localizable.strings in Resources */,
 				42C6FD6718E3BCF000913D4D /* InfoPlist.strings in Resources */,
 				42C6FD7018E3BCF000913D4D /* Main.storyboard in Resources */,
 			);
@@ -442,9 +480,11 @@
 				42C6FD9618E3D30B00913D4D /* QFNavigationController.m in Sources */,
 				42C6FDB118E41AD000913D4D /* QFNavigationBar.m in Sources */,
 				42F9682318EA872B00167EBD /* QFComment.m in Sources */,
+				D86368A818F174A4003C8BC9 /* QFRecommendProductCell.m in Sources */,
 				42F9682618EA872B00167EBD /* QFProduct.m in Sources */,
 				42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */,
 				42F9682018EA872B00167EBD /* QFUser.m in Sources */,
+				D86368A418F16A8E003C8BC9 /* EGORefreshTableHeaderView.m in Sources */,
 				42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */,
 				42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */,
 				26A4443118EFEE6300525AB3 /* QFSettingViewController.m in Sources */,

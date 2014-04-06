@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QFRecommendViewController : UIViewController
+#import <GTTableViewController.h>
+
+#import "EGORefreshTableHeaderView.h"
+
+@interface QFRecommendViewController : GTTableViewController<EGORefreshTableHeaderDelegate>
+
+- (void)startLoadingTableViewData;
+
+- (void)doneLoadingTableViewData;
 
 @end
