@@ -81,12 +81,15 @@
             identifier = @"mineViewController";
 #warning test
 
-            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
+            //UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
             //[self.navigationController pushViewController:vc animated:YES];
             
-            UIViewController *vcSetting=[self.storyboard instantiateViewControllerWithIdentifier:@"settingViewController"];
-            [self.navigationController pushViewController:vcSetting animated:YES];
-            return;
+            //UIViewController *vcSetting=[self.storyboard instantiateViewControllerWithIdentifier:@"settingViewController"];
+            //[self.navigationController pushViewController:vcSetting animated:YES];
+            
+           // UIViewController *vcMine=[self.storyboard instantiateViewControllerWithIdentifier:@"mineViewController"];
+            //[self.navigationController pushViewController:vcMine animated:YES];
+            //return;
             
             break;
         }

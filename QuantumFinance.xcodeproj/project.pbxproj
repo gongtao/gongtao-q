@@ -143,6 +143,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26BE115B18F1972A00F098BF /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				42C6FDB918E422C700913D4D /* QFCustomButton.h */,
+				42C6FDBA18E422C700913D4D /* QFCustomButton.m */,
+			);
+			name = Button;
+			sourceTree = "<group>";
+		};
 		42C6FD5018E3BCF000913D4D = {
 			isa = PBXGroup;
 			children = (
@@ -280,11 +289,10 @@
 		42C6FDAE18E41ABB00913D4D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26BE115B18F1972A00F098BF /* Button */,
 				42C6FDB518E4207C00913D4D /* ToolBar */,
 				42C6FDAF18E41AD000913D4D /* QFNavigationBar.h */,
 				42C6FDB018E41AD000913D4D /* QFNavigationBar.m */,
-				42C6FDB918E422C700913D4D /* QFCustomButton.h */,
-				42C6FDBA18E422C700913D4D /* QFCustomButton.m */,
 			);
 			name = View;
 			path = view;

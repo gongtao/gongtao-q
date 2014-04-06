@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QFMineViewController : UIViewController
+#import "QFSubBaseViewController.h"
+
+@interface QFMineViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,retain)UITableView * tableView;
 
 @end

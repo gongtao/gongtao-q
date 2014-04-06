@@ -53,6 +53,7 @@
     [exitButton addTarget:self action:@selector(exitButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:exitButton];
     //NSLog(@"%f,%f",self.view.frame.size.width,self.view.frame.size.height);
+    
 
 }
 
