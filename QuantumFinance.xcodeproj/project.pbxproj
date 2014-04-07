@@ -299,11 +299,8 @@
 		42C6FDAE18E41ABB00913D4D /* View */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				26BE115B18F1972A00F098BF /* Button */,
-=======
 				D86368A518F1745B003C8BC9 /* TableCell */,
->>>>>>> FETCH_HEAD
 				42C6FDB518E4207C00913D4D /* ToolBar */,
 				42C6FDAF18E41AD000913D4D /* QFNavigationBar.h */,
 				42C6FDB018E41AD000913D4D /* QFNavigationBar.m */,
