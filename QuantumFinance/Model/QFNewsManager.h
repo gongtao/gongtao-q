@@ -33,9 +33,11 @@
 
 #define Product_Entity          @"QFProduct"
 #define kPid                    @"pid"
+#define kOrder                  @"order"
+#define kType                   @"type"
 
 typedef enum {
-    QFNewsNoneType,
+    QFNewsNoneType = 0,
     QFNewsSolidType,
     QFNewsRadicalType
 }QFNewsType;
@@ -49,6 +51,19 @@ typedef enum {
 - (BOOL)saveContext:(NSManagedObjectContext *)context;
 
 - (BOOL)saveContext;
+
+/** Interface **/
+
+- (void)createProductListFromNetworking:(NSArray *)array type:(QFNewsType)type context:(NSManagedObjectContext *)context;
+
+/** Database **/
+
+//News
+- (QFProduct *)createProduct:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (QFProduct *)getProductById:(NSUInteger)pid context:(NSManagedObjectContext *)context;
+
+- (NSArray *)getRecommendProductsByType:(QFNewsType)type context:(NSManagedObjectContext *)context;
 
 /** Networking **/
 

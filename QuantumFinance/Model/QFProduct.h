@@ -12,6 +12,7 @@
 
 @interface QFProduct : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSNumber * deadline;
 @property (nonatomic, retain) NSString * eair;

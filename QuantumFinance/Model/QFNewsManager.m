@@ -82,6 +82,104 @@
     return [self saveContext:[self managedObjectContext]];
 }
 
+#pragma mark - Interface
+
+- (void)createProductListFromNetworking:(NSArray *)array type:(QFNewsType)type context:(NSManagedObjectContext *)context
+{
+    if (array && (NSNull *)array != [NSNull null] && array.count>0) {
+        NSArray *olderArray = [self getRecommendProductsByType:type context:context];
+        [olderArray enumerateObjectsUsingBlock:^(QFProduct *obj, NSUInteger idx, BOOL *stop){
+            obj.order = [NSNumber numberWithInteger:0];
+        }];
+        [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+            QFProduct *product = [self createProduct:obj context:context];
+            product.type = [NSNumber numberWithInteger:type];
+            product.order = [NSNumber numberWithInteger:idx+1];
+        }];
+    }
+}
+
+#pragma mark - Database
+
+//News
+- (QFProduct *)createProduct:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *pid = dic[@"id"];
+    
+    if (!pid || (NSNull *)pid == [NSNull null]) {
+        NSLog(@"Product: pid null");
+        return nil;
+    }
+    
+    QFProduct *product = [self getProductById:pid.integerValue context:context];
+    
+    if (!product) {
+        product = [NSEntityDescription insertNewObjectForEntityForName:Product_Entity inManagedObjectContext:context];
+        product.pid = pid;
+    }
+    
+    NSString *deadline = dic[@"deadline"];
+    if (deadline && (NSNull *)deadline != [NSNull null]) {
+        product.deadline = [NSNumber numberWithInteger:[deadline integerValue]];
+    }
+    
+    NSString *eair = dic[@"eair"];
+    if (eair && (NSNull *)eair != [NSNull null]) {
+        product.eair = eair;
+    }
+    
+    NSString *schedule = dic[@"schedule"];
+    if (schedule && (NSNull *)schedule != [NSNull null]) {
+        product.schedule = schedule;
+    }
+    
+    NSString *source = dic[@"source"];
+    if (source && (NSNull *)source != [NSNull null]) {
+        product.source = source;
+    }
+    
+    NSString *title = dic[@"title"];
+    if (title && (NSNull *)title != [NSNull null]) {
+        product.title = title;
+    }
+    
+    return product;
+}
+
+- (QFProduct *)getProductById:(NSUInteger)pid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Product_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kPid, pid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
+- (NSArray *)getRecommendProductsByType:(QFNewsType)type context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Product_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(%K == %i) AND (%K > %i) AND (%K <= %i)", kType, type, kOrder, 0, kOrder, 10]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results;
+    }
+    return nil;
+}
+
 #pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getNewsListType:(QFNewsType)type
@@ -104,31 +202,24 @@
         if (responseObject != [NSNull null]) {
             NSLog(@"%@", responseObject);
             
-//            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-//            temporaryContext.parentContext = [self managedObjectContext];
-//            
-//            [temporaryContext performBlock:^{
-//                NewsCategory *newsCategory = [self getNewsCategoryById:cid context:temporaryContext];
-//                
-//                if (1 == page) {
-//                    newsCategory.list = [NSOrderedSet orderedSet];
-//                    newsCategory.refreshTime = [NSDate date];
-//                }
-//                
-//                [self createNewsFromNetworking:responseObject newsCategory:newsCategory context:temporaryContext];
-//                [self saveContext:temporaryContext];
-//                // save parent to disk asynchronously
-//                [temporaryContext.parentContext performBlock:^{
-//                    [self saveContext:temporaryContext.parentContext];
-//                    if (success) {
-//                        success(nil);
-//                    }
-//                }];
-//            }];
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                [self createProductListFromNetworking:responseObject type:type context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success(nil);
+                    }
+                }];
+            }];
         }
         else {
-            if (success) {
-                success(nil);
+            if (failure) {
+                failure(nil);
             }
         }
     };
