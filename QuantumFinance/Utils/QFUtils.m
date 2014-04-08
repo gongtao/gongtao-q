@@ -28,8 +28,8 @@
 + (NSDate *)dateFromString:(NSString *)str
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSString *dateStr = [[[str stringByReplacingOccurrencesOfString:@"T" withString:@" "] componentsSeparatedByString:@"+"] objectAtIndex:0];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateStr = [[str stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ssz"];
     return [formatter dateFromString:dateStr];
 }
 

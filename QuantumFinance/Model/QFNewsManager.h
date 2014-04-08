@@ -56,19 +56,32 @@ typedef enum {
 
 - (void)createProductListFromNetworking:(NSArray *)array type:(QFNewsType)type context:(NSManagedObjectContext *)context;
 
+- (void)createNewsListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context;
+
 /** Database **/
 
-//News
+//Product
 - (QFProduct *)createProduct:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
 
 - (QFProduct *)getProductById:(NSUInteger)pid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getRecommendProductsByType:(QFNewsType)type context:(NSManagedObjectContext *)context;
 
+//News
+- (QFNews *)createNews:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (QFNews *)getNewsById:(NSUInteger)nid context:(NSManagedObjectContext *)context;
+
+- (NSArray *)getAllNewsByContext:(NSManagedObjectContext *)context;
+
 /** Networking **/
 
-- (AFHTTPRequestOperation *)getNewsListType:(QFNewsType)type
-                                       Page:(NSUInteger)page
+- (AFHTTPRequestOperation *)getProductListType:(QFNewsType)type
+                                          Page:(NSUInteger)page
+                                       success:(void (^)(NSArray *array))success
+                                       failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)getNewsListPage:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure;
 

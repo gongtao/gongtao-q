@@ -2,7 +2,7 @@
 //  QFProduct.m
 //  QuantumFinance
 //
-//  Created by 龚涛 on 4/1/14.
+//  Created by 龚涛 on 4/8/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
@@ -11,16 +11,17 @@
 
 @implementation QFProduct
 
-@dynamic order;
 @dynamic content;
 @dynamic deadline;
 @dynamic eair;
+@dynamic isHistory;
 @dynamic money;
+@dynamic order;
 @dynamic pid;
 @dynamic schedule;
 @dynamic source;
 @dynamic title;
 @dynamic type;
-@dynamic isHistory;
+@dynamic headline;
 
 @end

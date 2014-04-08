@@ -141,14 +141,14 @@
 
 - (void)reloadTableViewDataSource
 {
-    [[QFNewsManager sharedManager] getNewsListType:_type
-                                              Page:1
-                                           success:^(NSArray *array){
-                                               [self doneLoadingTableViewData];
-                                           }
-                                           failure:^(NSError *error){
-                                               [self doneLoadingTableViewData];
-                                           }];
+    [[QFNewsManager sharedManager] getProductListType:_type
+                                                 Page:1
+                                              success:^(NSArray *array){
+                                                  [self doneLoadingTableViewData];
+                                              }
+                                              failure:^(NSError *error){
+                                                  [self doneLoadingTableViewData];
+                                              }];
 }
 
 - (void)doneLoadingTableViewData

@@ -2,7 +2,7 @@
 //  QFComment.m
 //  QuantumFinance
 //
-//  Created by 龚涛 on 4/1/14.
+//  Created by 龚涛 on 4/8/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
@@ -16,8 +16,8 @@
 @dynamic cid;
 @dynamic content;
 @dynamic date;
-@dynamic user;
-@dynamic replyUser;
 @dynamic news;
+@dynamic replyUser;
+@dynamic user;
 
 @end

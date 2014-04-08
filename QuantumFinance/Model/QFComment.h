@@ -2,7 +2,7 @@
 //  QFComment.h
 //  QuantumFinance
 //
-//  Created by 龚涛 on 4/1/14.
+//  Created by 龚涛 on 4/8/14.
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
@@ -16,8 +16,8 @@
 @property (nonatomic, retain) NSNumber * cid;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) QFUser *user;
-@property (nonatomic, retain) QFUser *replyUser;
 @property (nonatomic, retain) QFNews *news;
+@property (nonatomic, retain) QFUser *replyUser;
+@property (nonatomic, retain) QFUser *user;
 
 @end
