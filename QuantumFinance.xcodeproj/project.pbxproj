@@ -36,7 +36,7 @@
 		42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC018E42A1000913D4D /* QFPerspectiveViewController.m */; };
 		42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */; };
 		42DA94C718E5158E008446F6 /* QFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA94C618E5158E008446F6 /* QFAboutViewController.m */; };
-		42E992C818F39F1600A5E88A /* QFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992C718F39F1600A5E88A /* QFMineViewController.m */; };
+		42E992CB18F3A24000A5E88A /* QFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992CA18F3A24000A5E88A /* QFMineViewController.m */; };
 		42F9681D18EA872A00167EBD /* QFNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9681C18EA872A00167EBD /* QFNews.m */; };
 		42F9682018EA872B00167EBD /* QFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9681F18EA872B00167EBD /* QFUser.m */; };
 		42F9682318EA872B00167EBD /* QFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F9682218EA872B00167EBD /* QFComment.m */; };
@@ -107,8 +107,8 @@
 		42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFHistoryViewController.m; sourceTree = "<group>"; };
 		42DA94C518E5158E008446F6 /* QFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFAboutViewController.h; sourceTree = "<group>"; };
 		42DA94C618E5158E008446F6 /* QFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFAboutViewController.m; sourceTree = "<group>"; };
-		42E992C618F39F0500A5E88A /* QFMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QFMineViewController.h; sourceTree = "<group>"; };
-		42E992C718F39F1600A5E88A /* QFMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFMineViewController.m; sourceTree = "<group>"; };
+		42E992C918F3A24000A5E88A /* QFMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFMineViewController.h; sourceTree = "<group>"; };
+		42E992CA18F3A24000A5E88A /* QFMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFMineViewController.m; sourceTree = "<group>"; };
 		42F9681B18EA872A00167EBD /* QFNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNews.h; sourceTree = "<group>"; };
 		42F9681C18EA872A00167EBD /* QFNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNews.m; sourceTree = "<group>"; };
 		42F9681E18EA872B00167EBD /* QFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFUser.h; sourceTree = "<group>"; };
@@ -275,8 +275,8 @@
 				42C6FDC018E42A1000913D4D /* QFPerspectiveViewController.m */,
 				42C6FDC218E42A2800913D4D /* QFHistoryViewController.h */,
 				42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */,
-				42E992C618F39F0500A5E88A /* QFMineViewController.h */,
-				42E992C718F39F1600A5E88A /* QFMineViewController.m */,
+				42E992C918F3A24000A5E88A /* QFMineViewController.h */,
+				42E992CA18F3A24000A5E88A /* QFMineViewController.m */,
 				42DA94C518E5158E008446F6 /* QFAboutViewController.h */,
 				42DA94C618E5158E008446F6 /* QFAboutViewController.m */,
 				26A4442F18EFEE6300525AB3 /* QFSettingViewController.h */,
@@ -500,7 +500,7 @@
 				42C6FDB818E422B300913D4D /* QFToolBar.m in Sources */,
 				42C6FDBB18E422C700913D4D /* QFCustomButton.m in Sources */,
 				42C6FD6D18E3BCF000913D4D /* QFAppDelegate.m in Sources */,
-				42E992C818F39F1600A5E88A /* QFMineViewController.m in Sources */,
+				42E992CB18F3A24000A5E88A /* QFMineViewController.m in Sources */,
 				42F9681D18EA872A00167EBD /* QFNews.m in Sources */,
 				42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */,
 				42C6FD9F18E40AC900913D4D /* QFRootViewController.m in Sources */,
