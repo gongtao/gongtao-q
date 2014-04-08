@@ -20,6 +20,8 @@
 
 #import "QFNews.h"
 
+#import "QFHeadLine.h"
+
 #define News_Entity             @"QFNews"
 #define kNid                    @"nid"
 
@@ -35,6 +37,9 @@
 #define kPid                    @"pid"
 #define kOrder                  @"order"
 #define kType                   @"type"
+
+#define HeadLine_Entity         @"QFHeadLine"
+#define kHid                    @"hid"
 
 typedef enum {
     QFNewsNoneType = 0,
@@ -53,6 +58,8 @@ typedef enum {
 - (BOOL)saveContext;
 
 /** Interface **/
+
+- (void)createPPTListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context;
 
 - (void)createProductListFromNetworking:(NSArray *)array type:(QFNewsType)type context:(NSManagedObjectContext *)context;
 
@@ -74,7 +81,18 @@ typedef enum {
 
 - (NSArray *)getAllNewsByContext:(NSManagedObjectContext *)context;
 
+//HeadLine
+- (QFHeadLine *)createHeadLine:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (QFHeadLine *)getHeadLineById:(NSUInteger)hid context:(NSManagedObjectContext *)context;
+
+- (NSArray *)getAllHeadLineByContext:(NSManagedObjectContext *)context;
+
 /** Networking **/
+
+- (AFHTTPRequestOperation *)getPPTListPage:(NSUInteger)page
+                                   success:(void (^)(NSArray *array))success
+                                   failure:(void (^)(NSError *error))failure
 
 - (AFHTTPRequestOperation *)getProductListType:(QFNewsType)type
                                           Page:(NSUInteger)page

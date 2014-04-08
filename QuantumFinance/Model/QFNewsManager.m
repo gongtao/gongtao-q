@@ -86,6 +86,15 @@
 
 #pragma mark - Interface
 
+- (void)createPPTListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context
+{
+    if (array && (NSNull *)array != [NSNull null] && array.count>0) {
+        [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+            [self createHeadLine:obj context:context];
+        }];
+    }
+}
+
 - (void)createProductListFromNetworking:(NSArray *)array type:(QFNewsType)type context:(NSManagedObjectContext *)context
 {
     if (array && (NSNull *)array != [NSNull null] && array.count>0) {
@@ -198,7 +207,7 @@
     NSNumber *nid = dic[@"id"];
     
     if (!nid || (NSNull *)nid == [NSNull null]) {
-        NSLog(@"Product: pid null");
+        NSLog(@"News: nid null");
         return nil;
     }
     
@@ -226,7 +235,7 @@
     
     NSString *logo = dic[@"logo"];
     if (logo && (NSNull *)logo != [NSNull null]) {
-        news.logo = logo;
+        news.logo = [[kBaseURL URLByAppendingPathComponent:logo] absoluteString];
     }
     
     NSString *content = dic[@"content"];
@@ -276,7 +285,121 @@
     return nil;
 }
 
+//HeadLine
+- (QFHeadLine *)createHeadLine:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *hid = dic[@"sort"];
+    
+    if (!hid || (NSNull *)hid == [NSNull null]) {
+        NSLog(@"HeadLine: hid null");
+        return nil;
+    }
+    
+    QFHeadLine *headline = [self getHeadLineById:hid.integerValue context:context];
+    
+    if (!headline) {
+        headline = [NSEntityDescription insertNewObjectForEntityForName:HeadLine_Entity inManagedObjectContext:context];
+        headline.hid = hid;
+    }
+    
+    NSString *logo = dic[@"ppt_logo"];
+    if (logo && (NSNull *)logo != [NSNull null]) {
+        headline.logo = [[kBaseURL URLByAppendingPathComponent:logo] absoluteString];;
+    }
+    
+    NSString *type = dic[@"ppt_type"];
+    if (type && (NSNull *)type != [NSNull null]) {
+        headline.type = type;
+        
+        if ([type isEqualToString:@"comment"]) {
+            headline.news = [self createNews:@{@"id":dic[@"comment_or_product_id"]} context:context];
+        }
+        else if ([type isEqualToString:@"product"]) {
+            headline.product = [self createProduct:@{@"id":dic[@"comment_or_product_id"]} context:context];
+        }
+    }
+    
+    return headline;
+}
+
+- (QFHeadLine *)getHeadLineById:(NSUInteger)hid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:HeadLine_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kHid, hid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
+- (NSArray *)getAllHeadLineByContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:HeadLine_Entity inManagedObjectContext:context];
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results;
+    }
+    return nil;
+}
+
 #pragma mark - Networking
+
+- (AFHTTPRequestOperation *)getPPTListPage:(NSUInteger)page
+                                   success:(void (^)(NSArray *array))success
+                                   failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *param = @{@"page": [NSNumber numberWithInt:page],
+                            @"per_page": [NSNumber numberWithInt:3]};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                [self createPPTListFromNetworking:responseObject context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success(responseObject);
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/ppts/get_ppt.json" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
 
 - (AFHTTPRequestOperation *)getProductListType:(QFNewsType)type
                                           Page:(NSUInteger)page
@@ -308,7 +431,7 @@
                 [temporaryContext.parentContext performBlock:^{
                     [self saveContext:temporaryContext.parentContext];
                     if (success) {
-                        success(nil);
+                        success(responseObject);
                     }
                 }];
             }];
@@ -327,7 +450,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"loan_informations/promoted_products.json" parameters:param success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/loan_informations/promoted_products.json" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
@@ -359,7 +482,7 @@
                 [temporaryContext.parentContext performBlock:^{
                     [self saveContext:temporaryContext.parentContext];
                     if (success) {
-                        success(nil);
+                        success(responseObject);
                     }
                 }];
             }];
@@ -378,7 +501,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"comments/expert_comments_list.json" parameters:param success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/comments/expert_comments_list.json" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
