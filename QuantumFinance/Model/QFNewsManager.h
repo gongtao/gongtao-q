@@ -92,7 +92,7 @@ typedef enum {
 
 - (AFHTTPRequestOperation *)getPPTListPage:(NSUInteger)page
                                    success:(void (^)(NSArray *array))success
-                                   failure:(void (^)(NSError *error))failure
+                                   failure:(void (^)(NSError *error))failure;
 
 - (AFHTTPRequestOperation *)getProductListType:(QFNewsType)type
                                           Page:(NSUInteger)page

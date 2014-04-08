@@ -10,7 +10,12 @@
 
 #import "QFRecommendProductCell.h"
 
+#import "QFHeadLineView.h"
+
 @interface QFRecommendViewController ()
+{
+    NSUInteger _loadCount;
+}
 
 @property (nonatomic, strong) UITableViewCell *firstCell;
 
@@ -141,7 +146,25 @@
 
 - (void)reloadTableViewDataSource
 {
-    [[QFNewsManager sharedManager] getProductListType:_type
+    _loadCount = 3;
+    [[QFNewsManager sharedManager] getPPTListPage:1
+                                          success:^(NSArray *array){
+                                              [self doneLoadingTableViewData];
+                                          }
+                                          failure:^(NSError *error){
+                                              [self doneLoadingTableViewData];
+                                          }];
+    
+    [[QFNewsManager sharedManager] getProductListType:QFNewsRadicalType
+                                                 Page:1
+                                              success:^(NSArray *array){
+                                                  [self doneLoadingTableViewData];
+                                              }
+                                              failure:^(NSError *error){
+                                                  [self doneLoadingTableViewData];
+                                              }];
+    
+    [[QFNewsManager sharedManager] getProductListType:QFNewsSolidType
                                                  Page:1
                                               success:^(NSArray *array){
                                                   [self doneLoadingTableViewData];
@@ -153,9 +176,12 @@
 
 - (void)doneLoadingTableViewData
 {
-    _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    _loadCount--;
+    if (_loadCount == 0) {
+        _reloading = NO;
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 //    [self refreshLastUpdateTime];
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
