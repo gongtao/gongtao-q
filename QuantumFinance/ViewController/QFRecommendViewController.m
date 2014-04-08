@@ -21,8 +21,6 @@
 @property (nonatomic, assign) BOOL reloading;
     
 @property (nonatomic, assign) QFNewsType type;
-    
-@property (nonatomic, assign) AFHTTPRequestOperation *request;
 
 @end
 
@@ -143,18 +141,14 @@
 
 - (void)reloadTableViewDataSource
 {
-    if (_request) {
-        [_request cancel];
-        _request = nil;
-    }
-    _request = [[QFNewsManager sharedManager] getNewsListType:_type
-                                                         Page:1
-                                                      success:^(NSArray *array){
-                                                          [self doneLoadingTableViewData];
-                                                      }
-                                                      failure:^(NSError *error){
-                                                          [self doneLoadingTableViewData];
-                                                      }];
+    [[QFNewsManager sharedManager] getNewsListType:_type
+                                              Page:1
+                                           success:^(NSArray *array){
+                                               [self doneLoadingTableViewData];
+                                           }
+                                           failure:^(NSError *error){
+                                               [self doneLoadingTableViewData];
+                                           }];
 }
 
 - (void)doneLoadingTableViewData
