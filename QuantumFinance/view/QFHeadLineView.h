@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QFHeadLineView : UIView
+#import <GTCyclePageView.h>
+
+@interface QFHeadLineView : UIView <NSFetchedResultsControllerDelegate, GTCyclePageViewDataSource, GTCyclePageViewDelegate>
+
+@property (nonatomic, strong) GTCyclePageView *cyclePageView;
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end

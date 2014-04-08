@@ -304,7 +304,7 @@
     
     NSString *logo = dic[@"ppt_logo"];
     if (logo && (NSNull *)logo != [NSNull null]) {
-        headline.logo = [[kBaseURL URLByAppendingPathComponent:logo] absoluteString];;
+        headline.logo = [[kBaseURL absoluteString] stringByAppendingString:logo];
     }
     
     NSString *type = dic[@"ppt_type"];

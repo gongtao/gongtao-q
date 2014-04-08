@@ -120,6 +120,8 @@
     if ([indexPath row] == 0) {
         if (!_firstCell) {
             _firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            QFHeadLineView *headLineView = [[QFHeadLineView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 156.0)];
+            [_firstCell addSubview:headLineView];
         }
         return _firstCell;
     }
