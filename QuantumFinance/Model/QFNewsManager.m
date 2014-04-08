@@ -265,7 +265,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:Product_Entity inManagedObjectContext:context];
     
     [request setEntity:entity];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"news == %@", Nil]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"headLine == %@", Nil]];
     
     NSError *error;
     NSArray *results = [context executeFetchRequest:request error:&error];
