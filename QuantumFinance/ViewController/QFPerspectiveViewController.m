@@ -41,8 +41,8 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     
     QFPerspectiveTableViewController *newsVC = [[QFPerspectiveTableViewController alloc] initWithRequest:request cacheName:@"cachePerspectiveNews"];
-    newsVC.view.frame=CGRectMake(0, 32, self.view.bounds.size.width, self.view.bounds.size.height-85);
-    newsVC.tableView.frame=CGRectMake(0, 32, self.view.bounds.size.width, self.view.bounds.size.height-85);
+    newsVC.view.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-85);
+    newsVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-85);
     [self addChildViewController:newsVC];
     [self.view addSubview:newsVC.view];
     [newsVC startLoadingTableViewData];

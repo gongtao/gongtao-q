@@ -234,7 +234,7 @@
         //UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 340, 135)];
         
         // cell.type = self.type;
-        cell.button.frame=CGRectMake(10, 10, 300, 135);
+        //cell.button.frame=CGRectMake(10, 10, 300, 135);
         cell.button.tag=100+[indexPath row];
         [cell.button addTarget:self action:@selector(cellButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -327,7 +327,7 @@
             return 50.0;
         }
     }
-    return 145;
+    return 120;
     
 }
 
