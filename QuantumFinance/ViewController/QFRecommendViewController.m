@@ -299,7 +299,7 @@
     else if (row == 1) {
         return 43.0;
     }
-    return 109.0;
+    return 110.0;
 }
 
 #pragma mark EGORefreshTableHeaderDelegate
