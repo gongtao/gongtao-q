@@ -10,4 +10,6 @@
 
 @interface QFProductEairLabel : UIView
 
+- (void)setEair:(NSString *)eair;
+
 @end

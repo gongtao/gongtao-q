@@ -34,6 +34,8 @@
 
 @property (nonatomic, strong) QFProductProgress *progress;
 
+@property (nonatomic, strong) CATextLayer *eairLayer;
+
 @end
 
 @implementation QFRecommendProductCell
@@ -107,6 +109,23 @@
         _eairImageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
         _eairImageView.center = CGPointMake(249.0, 50.0);
         [bgView addSubview:_eairImageView];
+        
+        UILabel *infoLabel4 = [[UILabel alloc] initWithFrame:CGRectMake(278.0, 47.0, 22.0, 22.0)];
+        infoLabel4.textColor = [UIColor whiteColor];
+        infoLabel4.font = [UIFont boldSystemFontOfSize:20.0];
+        infoLabel4.text = @"%";
+        infoLabel4.textAlignment = NSTextAlignmentRight;
+        infoLabel4.backgroundColor = [UIColor clearColor];
+        [bgView addSubview:infoLabel4];
+        
+        UILabel *eairLabel = [[UILabel alloc] initWithFrame:CGRectMake(238.0, 69.0, 62.0, 19.0)];
+        eairLabel.textColor = [UIColor whiteColor];
+        eairLabel.font = [UIFont systemFontOfSize:15.0];
+        eairLabel.text = @"年化收益";
+        eairLabel.textAlignment = NSTextAlignmentRight;
+        eairLabel.backgroundColor = [UIColor clearColor];
+        [bgView addSubview:eairLabel];
+        
     }
     return self;
 }
@@ -146,6 +165,40 @@
         _progress.hidden = NO;
     }
     _scheduleLabel.text = product.schedule;
+    
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    CGFloat large = 35.0 * scale;
+    CGFloat small = 20.0 * scale;
+    NSString *eairStr = [product.eair stringByReplacingOccurrencesOfString:@"%" withString:@""];
+    NSRange range = [eairStr rangeOfString:@"."];
+    NSMutableAttributedString *eair = [[NSMutableAttributedString alloc] initWithString:eairStr];
+    if (range.location != NSNotFound) {
+        [eair addAttribute:(NSString *)kCTFontAttributeName
+                     value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:large].fontName,large,NULL))
+                     range:NSMakeRange(0, range.location)];
+        [eair addAttribute:(NSString *)kCTFontAttributeName
+                     value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:small].fontName,small,NULL))
+                     range:NSMakeRange(range.location, eair.string.length-range.location)];
+    }
+    else {
+        [eair addAttribute:(NSString *)kCTFontAttributeName
+                     value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:large].fontName,large,NULL))
+                     range:NSMakeRange(0, eair.string.length)];
+    }
+    [eair addAttribute:(NSString *)kCTForegroundColorAttributeName
+                        value:(id)[UIColor whiteColor].CGColor
+                        range:NSMakeRange(0, eair.string.length)];
+    size = [eair size];
+    
+    if (_eairLayer) {
+        [_eairLayer removeFromSuperlayer];
+        _eairLayer = nil;
+    }
+    _eairLayer = [CATextLayer layer];
+    _eairLayer.shouldRasterize = YES;
+    _eairLayer.string = eair;
+    _eairLayer.frame = CGRectMake(0.0, 43.0, size.width, size.height);
+    [_eairImageView.layer addSublayer:_eairLayer];
 }
 
 @end
