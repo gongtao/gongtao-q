@@ -21,11 +21,19 @@
 
 @property (nonatomic, strong) UITableViewCell *secondCell;
 
+@property (nonatomic, strong) UIImageView *selectionView;
+
+@property (nonatomic, strong) UIButton *firstBtn;
+
+@property (nonatomic, strong) UIButton *secondBtn;
+
 @property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
     
 @property (nonatomic, assign) BOOL reloading;
     
 @property (nonatomic, assign) QFNewsType type;
+
+- (void)_selectProductType:(UIButton *)button;
 
 @end
 
@@ -91,6 +99,36 @@
     }
 }
 
+#pragma mark - Private
+
+- (void)_selectProductType:(UIButton *)button
+{
+    CGRect frame = _selectionView.frame;
+    UIButton *lastBtn = _firstBtn;
+    QFNewsType type = QFNewsRadicalType;
+    if (frame.origin.x != lastBtn.frame.origin.x) {
+        lastBtn = _secondBtn;
+        type = QFNewsSolidType;
+    }
+    if (button == lastBtn) {
+        return;
+    }
+    [self changeFetchRequest:^(NSFetchRequest *request){
+        [request setPredicate:[NSPredicate predicateWithFormat:@"(%K == %@) AND (%K > %@) AND (%K <= %@)", kType, [NSNumber numberWithInteger:type], kOrder, [NSNumber numberWithInteger:0], kOrder, [NSNumber numberWithInteger:10]]];
+    }];
+    [self.tableView reloadData];
+    
+    frame.origin.x = button.frame.origin.x;
+    [lastBtn setTitleColor:[UIColor colorWithHexString:@"22668d"] forState:UIControlStateNormal];
+    [UIView animateWithDuration:0.3
+                     animations:^(void){
+                         _selectionView.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                     }];
+}
+
 #pragma mark - Override
 
 - (NSFetchRequest *)fetchRequest
@@ -131,6 +169,23 @@
             _secondCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
+            _selectionView = [[UIImageView alloc] initWithFrame:CGRectMake(9.0, 8.0, 152.0, 31.0)];
+            _selectionView.image = [[UIImage imageNamed:@"首页产品类型选择底板.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(30.0, 36.0, 32.0, 36.0)];
+            [_secondCell addSubview:_selectionView];
+            
+            _firstBtn = [[UIButton alloc] initWithFrame:CGRectMake(9.0, 4.0, 152.0, 39.0)];
+            _firstBtn.titleLabel.font = [UIFont systemFontOfSize:17.0];
+            [_firstBtn setTitle:@"稳健型" forState:UIControlStateNormal];
+            [_firstBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_firstBtn addTarget:self action:@selector(_selectProductType:) forControlEvents:UIControlEventTouchUpInside];
+            [_secondCell addSubview:_firstBtn];
+            
+            _secondBtn = [[UIButton alloc] initWithFrame:CGRectMake(161.0, 4.0, 152.0, 39.0)];
+            _secondBtn.titleLabel.font = [UIFont systemFontOfSize:17.0];
+            [_secondBtn setTitle:@"激进型" forState:UIControlStateNormal];
+            [_secondBtn setTitleColor:[UIColor colorWithHexString:@"22668d"] forState:UIControlStateNormal];
+            [_secondBtn addTarget:self action:@selector(_selectProductType:) forControlEvents:UIControlEventTouchUpInside];
+            [_secondCell addSubview:_secondBtn];
         }
         return _secondCell;
     }
@@ -242,7 +297,7 @@
         return 156.0;
     }
     else if (row == 1) {
-        return 47.0;
+        return 43.0;
     }
     return 109.0;
 }
