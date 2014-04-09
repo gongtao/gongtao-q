@@ -149,8 +149,7 @@
 
 - (void)configCell:(QFRecommendProductCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    NSInteger row = [indexPath row];
-    QFProduct *product = [fetchedResultsController objectAtIndexPath:indexPath];
+    [cell setProduct:[fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
@@ -169,8 +168,9 @@
             _secondCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            _selectionView = [[UIImageView alloc] initWithFrame:CGRectMake(9.0, 8.0, 152.0, 31.0)];
+            _selectionView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 304.0, 62.0)];
             _selectionView.image = [[UIImage imageNamed:@"首页产品类型选择底板.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(30.0, 36.0, 32.0, 36.0)];
+            _selectionView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
             [_secondCell addSubview:_selectionView];
             
             _firstBtn = [[UIButton alloc] initWithFrame:CGRectMake(9.0, 4.0, 152.0, 39.0)];
@@ -186,6 +186,8 @@
             [_secondBtn setTitleColor:[UIColor colorWithHexString:@"22668d"] forState:UIControlStateNormal];
             [_secondBtn addTarget:self action:@selector(_selectProductType:) forControlEvents:UIControlEventTouchUpInside];
             [_secondCell addSubview:_secondBtn];
+            
+            _selectionView.center = _firstBtn.center;
         }
         return _secondCell;
     }
@@ -299,7 +301,7 @@
     else if (row == 1) {
         return 43.0;
     }
-    return 110.0;
+    return 108.0;
 }
 
 #pragma mark EGORefreshTableHeaderDelegate

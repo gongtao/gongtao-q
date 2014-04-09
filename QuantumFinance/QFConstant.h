@@ -18,4 +18,6 @@
 #define Color_MainBlue              [UIColor colorWithHexString:@"0e9fde"]
 #define Color_DarkBlue              [UIColor colorWithHexString:@"1b4f6d"]
 
+#define Color_NewsFont              [UIColor colorWithHexString:@"666666"]
+
 #endif

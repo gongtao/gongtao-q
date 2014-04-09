@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface QFProductProgress : UIView
+{
+    UIView *_barView;
+}
+
+- (void)setProgress:(CGFloat)progress;
 
 @end

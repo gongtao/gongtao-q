@@ -10,6 +10,6 @@
 
 @interface QFRecommendProductCell : UITableViewCell
 
-@property (nonatomic, strong) QFProduct *product;
+- (void)setProduct:(QFProduct *)product;
 
 @end

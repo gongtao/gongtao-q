@@ -15,17 +15,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        _barView = [[UIView alloc] init];
+        _barView.backgroundColor = Color_MainBlue;
+        [self addSubview:_barView];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setProgress:(CGFloat)progress
 {
-    // Drawing code
+    CGRect frame = self.bounds;
+    frame.size.width -= 2.0;
+    frame.size.height -= 2.0;
+    frame.origin = CGPointMake(1.0, 1.0);
+    frame.size.width *= progress;
+    _barView.frame = frame;
 }
-*/
 
 @end
