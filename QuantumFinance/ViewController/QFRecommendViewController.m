@@ -120,6 +120,7 @@
     if ([indexPath row] == 0) {
         if (!_firstCell) {
             _firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            _firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
             QFHeadLineView *headLineView = [[QFHeadLineView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 156.0)];
             [_firstCell addSubview:headLineView];
         }
@@ -128,6 +129,8 @@
     else if ([indexPath row] == 1) {
         if (!_secondCell) {
             _secondCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
         }
         return _secondCell;
     }
@@ -221,6 +224,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"select:%i", indexPath.row);
 }
 
 #pragma mark - UITableViewDataSource
@@ -238,7 +242,7 @@
         return 156.0;
     }
     else if (row == 1) {
-        return 44.0;
+        return 47.0;
     }
     return 109.0;
 }

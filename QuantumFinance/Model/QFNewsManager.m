@@ -271,7 +271,7 @@
 - (NSArray *)getAllNewsByContext:(NSManagedObjectContext *)context
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:Product_Entity inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:context];
     
     [request setEntity:entity];
     [request setPredicate:[NSPredicate predicateWithFormat:@"headLine == %@", Nil]];
