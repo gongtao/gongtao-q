@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E3200" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cvh-XF-J4v">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
@@ -77,10 +78,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="aVL-he-fN6"/>
+                    <connections>
+                        <segue destination="1Aa-dH-KXF" kind="push" id="BFS-Wi-ojB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIQ-ri-xoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1102" y="-385"/>
+        </scene>
+        <!--News Detail View Controller - 文章详情-->
+        <scene sceneID="n6A-Ld-zvP">
+            <objects>
+                <viewController storyboardIdentifier="newsDetailViewController" title="文章详情" id="1Aa-dH-KXF" customClass="QFNewsDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gGj-ZC-Qcd"/>
+                        <viewControllerLayoutGuide type="bottom" id="xZP-pm-2jN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Rw-Sf-ve1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lDi-CU-3hb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="njW-H2-biE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1607" y="-385"/>
         </scene>
         <!--History View Controller - 历史回顾-->
         <scene sceneID="jRa-08-wWD">
