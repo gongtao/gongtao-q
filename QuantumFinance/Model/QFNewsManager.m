@@ -235,7 +235,7 @@
     
     NSString *logo = dic[@"logo"];
     if (logo && (NSNull *)logo != [NSNull null]) {
-        news.logo = [[kBaseURL URLByAppendingPathComponent:logo] absoluteString];
+        news.logo = [[kBaseURL absoluteString] stringByAppendingString:logo];
     }
     
     NSString *content = dic[@"content"];
@@ -246,6 +246,11 @@
     NSString *title = dic[@"title"];
     if (title && (NSNull *)title != [NSNull null]) {
         news.title = title;
+    }
+    
+    NSString *synopsis = dic[@"synopsis"];
+    if (synopsis && (NSNull *)synopsis != [NSNull null]) {
+        news.synopsis = synopsis;
     }
     
     return news;
