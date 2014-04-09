@@ -248,6 +248,11 @@
 
 -(void)cellButtonPressed:(UIButton*)button
 {
+    NSIndexPath *indexPath=[NSIndexPath indexPathWithIndex:button.tag];
+   QFNews *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
+    //vc.news=news;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
