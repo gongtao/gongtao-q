@@ -20,7 +20,7 @@
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isCollect" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isNew" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="isNew" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="synopsis" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,9 +53,9 @@
     </entity>
     <elements>
         <element name="QFComment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="QFHeadLine" positionX="0" positionY="0" width="0" height="0"/>
         <element name="QFNews" positionX="0" positionY="0" width="0" height="0"/>
         <element name="QFProduct" positionX="0" positionY="0" width="0" height="0"/>
         <element name="QFUser" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QFHeadLine" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

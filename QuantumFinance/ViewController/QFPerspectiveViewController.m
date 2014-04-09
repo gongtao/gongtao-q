@@ -35,8 +35,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName: News_Entity inManagedObjectContext:[appDelegate managedObjectContext]];
     [request setEntity:entity];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-    //request.predicate = [NSPredicate predicateWithFormat:@"news.nid == %@",_news.nid];isNew == YES 和 news == Nil
-    request.predicate = [NSPredicate predicateWithFormat:@"isNew == Yes AND headLine == Nil"];
+    request.predicate = [NSPredicate predicateWithFormat:@"isNew == Yes"];
 
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     

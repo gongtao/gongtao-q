@@ -200,6 +200,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:News_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+    request.predicate = [NSPredicate predicateWithFormat:@"isNew == Yes"];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
 }
