@@ -37,6 +37,8 @@
 		42C6FDBE18E429F200913D4D /* QFRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDBD18E429F200913D4D /* QFRecommendViewController.m */; };
 		42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC018E42A1000913D4D /* QFPerspectiveViewController.m */; };
 		42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */; };
+		42D261E018F5131100824DA4 /* QFProductEairLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D261DF18F5131100824DA4 /* QFProductEairLabel.m */; };
+		42D261E318F5132E00824DA4 /* QFProductProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D261E218F5132E00824DA4 /* QFProductProgress.m */; };
 		42DA94C718E5158E008446F6 /* QFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA94C618E5158E008446F6 /* QFAboutViewController.m */; };
 		42E992CB18F3A24000A5E88A /* QFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992CA18F3A24000A5E88A /* QFMineViewController.m */; };
 		42E992CE18F3CB7E00A5E88A /* QFHeadLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992CD18F3CB7E00A5E88A /* QFHeadLineView.m */; };
@@ -113,6 +115,10 @@
 		42C6FDC018E42A1000913D4D /* QFPerspectiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFPerspectiveViewController.m; sourceTree = "<group>"; };
 		42C6FDC218E42A2800913D4D /* QFHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFHistoryViewController.h; sourceTree = "<group>"; };
 		42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFHistoryViewController.m; sourceTree = "<group>"; };
+		42D261DE18F5131100824DA4 /* QFProductEairLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QFProductEairLabel.h; path = QuantumFinance/View/QFProductEairLabel.h; sourceTree = SOURCE_ROOT; };
+		42D261DF18F5131100824DA4 /* QFProductEairLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QFProductEairLabel.m; path = QuantumFinance/View/QFProductEairLabel.m; sourceTree = SOURCE_ROOT; };
+		42D261E118F5132E00824DA4 /* QFProductProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QFProductProgress.h; path = QuantumFinance/View/QFProductProgress.h; sourceTree = SOURCE_ROOT; };
+		42D261E218F5132E00824DA4 /* QFProductProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QFProductProgress.m; path = QuantumFinance/View/QFProductProgress.m; sourceTree = SOURCE_ROOT; };
 		42DA94C518E5158E008446F6 /* QFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFAboutViewController.h; sourceTree = "<group>"; };
 		42DA94C618E5158E008446F6 /* QFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFAboutViewController.m; sourceTree = "<group>"; };
 		42E992C918F3A24000A5E88A /* QFMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFMineViewController.h; sourceTree = "<group>"; };
@@ -322,6 +328,10 @@
 				42C6FDB018E41AD000913D4D /* QFNavigationBar.m */,
 				42E992CC18F3CB7E00A5E88A /* QFHeadLineView.h */,
 				42E992CD18F3CB7E00A5E88A /* QFHeadLineView.m */,
+				42D261DE18F5131100824DA4 /* QFProductEairLabel.h */,
+				42D261DF18F5131100824DA4 /* QFProductEairLabel.m */,
+				42D261E118F5132E00824DA4 /* QFProductProgress.h */,
+				42D261E218F5132E00824DA4 /* QFProductProgress.m */,
 			);
 			name = View;
 			path = view;
@@ -503,8 +513,10 @@
 				42C6FDA318E40E6A00913D4D /* QFNewsManager.m in Sources */,
 				42C6FD6918E3BCF000913D4D /* main.m in Sources */,
 				42C6FDBE18E429F200913D4D /* QFRecommendViewController.m in Sources */,
+				42D261E318F5132E00824DA4 /* QFProductProgress.m in Sources */,
 				42C6FDB418E41F5100913D4D /* DataBase.xcdatamodeld in Sources */,
 				2692C9D618F43375005466AB /* QFPerspectiveTableViewController.m in Sources */,
+				42D261E018F5131100824DA4 /* QFProductEairLabel.m in Sources */,
 				42C6FD9618E3D30B00913D4D /* QFNavigationController.m in Sources */,
 				42E992D418F3D6B100A5E88A /* QFProduct.m in Sources */,
 				42C6FDB118E41AD000913D4D /* QFNavigationBar.m in Sources */,
