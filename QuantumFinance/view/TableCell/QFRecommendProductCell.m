@@ -197,7 +197,7 @@
     _eairLayer = [CATextLayer layer];
     _eairLayer.shouldRasterize = YES;
     _eairLayer.string = eair;
-    _eairLayer.frame = CGRectMake(0.0, 43.0, size.width, size.height);
+    _eairLayer.frame = CGRectMake(89.0-size.height/scale, 43.0-size.height/scale/2.0, size.width, size.height);
     [_eairImageView.layer addSublayer:_eairLayer];
 }
 
