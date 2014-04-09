@@ -289,6 +289,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (count == 0) {
+        return 1;
+    }
     return count+2;
 }
 
