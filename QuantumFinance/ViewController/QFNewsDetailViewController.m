@@ -17,18 +17,6 @@
 
 @property(nonatomic,strong)UITableView *tableView;
 
-@property(nonatomic,strong)NSString *title;
-
-@property(nonatomic,strong)NSString *content;
-
-@property(nonatomic,strong)NSDate *date;
-
-@property(nonatomic,strong)NSString *logo;
-
-@property(nonatomic,strong)NSNumber *commentCount;
-
-@property(nonatomic,strong)NSNumber *viewCount;
-
 @property(nonatomic,strong)NSNumber *contentHeight;
 
 
@@ -50,7 +38,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    //[self configNews];
     UIImageView *imageViewLogo=[[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 300, 180)];
     [imageViewLogo setImageWithURL:[NSURL URLWithString:_news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
     
@@ -79,16 +66,6 @@
     
     
     
-}
-
--(void)configNews
-{
-    _title=_news.title;
-    _content=_news.content;
-    _date=_news.date;
-    _logo=_news.logo;
-    _commentCount=_news.commentCount;
-    _viewCount=_news.viewCount;
 }
 
 - (void)didReceiveMemoryWarning
