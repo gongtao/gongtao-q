@@ -12,6 +12,7 @@
 @implementation QFProduct
 
 @dynamic content;
+@dynamic date;
 @dynamic deadline;
 @dynamic eair;
 @dynamic isHistory;
@@ -20,6 +21,7 @@
 @dynamic pid;
 @dynamic schedule;
 @dynamic source;
+@dynamic time;
 @dynamic title;
 @dynamic type;
 @dynamic headline;

@@ -31,6 +31,7 @@
     </entity>
     <entity name="QFProduct" representedClassName="QFProduct" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deadline" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="eair" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHistory" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -39,6 +40,7 @@
         <attribute name="pid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="headline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QFHeadLine" inverseName="product" inverseEntity="QFHeadLine" syncable="YES"/>

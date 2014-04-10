@@ -65,6 +65,8 @@ typedef enum {
 
 - (void)createNewsListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context;
 
+- (void)createCommentsListFromNetworking:(NSArray *)array news:(QFNews *)news context:(NSManagedObjectContext *)context;
+
 /** Database **/
 
 //Product
@@ -88,6 +90,16 @@ typedef enum {
 
 - (NSArray *)getAllHeadLineByContext:(NSManagedObjectContext *)context;
 
+//Comment
+- (QFComment *)createComment:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (QFComment *)getCommentById:(NSUInteger)cid context:(NSManagedObjectContext *)context;
+
+//User
+- (QFUser *)createUser:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
+
+- (QFUser *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context;
+
 /** Networking **/
 
 - (AFHTTPRequestOperation *)getPPTListPage:(NSUInteger)page
@@ -102,5 +114,10 @@ typedef enum {
 - (AFHTTPRequestOperation *)getNewsListPage:(NSUInteger)page
                                     success:(void (^)(NSArray *array))success
                                     failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)getCommentsListNews:(QFNews *)news
+                                           Page:(NSUInteger)page
+                                        success:(void (^)(NSArray *array))success
+                                        failure:(void (^)(NSError *error))failure;
 
 @end

@@ -120,6 +120,16 @@
     }
 }
 
+- (void)createCommentsListFromNetworking:(NSArray *)array news:(QFNews *)news context:(NSManagedObjectContext *)context
+{
+    if (array && (NSNull *)array != [NSNull null] && array.count>0) {
+        [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+            QFComment *comment = [self createComment:obj context:context];
+            comment.news = news;
+        }];
+    }
+}
+
 #pragma mark - Database
 
 //Product
@@ -162,6 +172,22 @@
     NSString *title = dic[@"title"];
     if (title && (NSNull *)title != [NSNull null]) {
         product.title = title;
+    }
+    
+    NSString *content = dic[@"description"];
+    if (content && (NSNull *)content != [NSNull null]) {
+        product.content = content;
+    }
+    
+    NSString *money = dic[@"total_money"];
+    if (money && (NSNull *)money != [NSNull null]) {
+        product.money = money;
+    }
+    
+    NSString *time = dic[@"updated_at"];
+    if (time && (NSNull *)time != [NSNull null]) {
+        product.time = [QFUtils dateFromString:time];
+        product.date = [QFUtils stringFromDate:product.time];
     }
     
     return product;
@@ -358,6 +384,110 @@
     return nil;
 }
 
+//Comment
+- (QFComment *)createComment:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *cid = dic[@"id"];
+    
+    if (!cid || (NSNull *)cid == [NSNull null]) {
+        NSLog(@"Comment: cid null");
+        return nil;
+    }
+    
+    QFComment *comment = [self getCommentById:cid.integerValue context:context];
+    
+    if (!comment) {
+        comment = [NSEntityDescription insertNewObjectForEntityForName:Comment_Entity inManagedObjectContext:context];
+        comment.cid = cid;
+    }
+    
+    NSString *content = dic[@"content"];
+    if (content && (NSNull *)content != [NSNull null]) {
+        comment.content = content;
+    }
+    
+    NSString *date = dic[@"updated_at"];
+    if (date && (NSNull *)date != [NSNull null]) {
+        comment.date = [QFUtils dateFromString:date];
+    }
+    
+    comment.user = [self createUser:@{@"id":dic[@"user_id"],
+                                      @"avatar":dic[@"user_avatar"],
+                                      @"name":dic[@"user_avatar"]}
+                            context:context];
+    
+    comment.replyUser = [self createUser:@{@"id":dic[@"to_user_id"],
+                                           @"avatar":dic[@"to_user_avatar"],
+                                           @"name":dic[@"to_user_avatar"]}
+                                 context:context];
+
+    return comment;
+}
+
+- (QFComment *)getCommentById:(NSUInteger)cid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Comment_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kCommentId, cid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
+//User
+- (QFUser *)createUser:(NSDictionary *)dic context:(NSManagedObjectContext *)context
+{
+    NSNumber *uid = dic[@"id"];
+    
+    if (!uid || (NSNull *)uid == [NSNull null]) {
+        NSLog(@"User: uid null");
+        return nil;
+    }
+    
+    QFUser *user = [self getUserById:uid.integerValue context:context];
+    
+    if (!user) {
+        user = [NSEntityDescription insertNewObjectForEntityForName:User_Entity inManagedObjectContext:context];
+        user.uid = uid;
+    }
+    
+    NSString *name = dic[@"name"];
+    if (name && (NSNull *)name != [NSNull null]) {
+        user.name = name;
+    }
+    
+    NSString *avatar = dic[@"avatar"];
+    if (avatar && (NSNull *)avatar != [NSNull null]) {
+        user.avatar = [[kBaseURL absoluteString] stringByAppendingString:avatar];
+    }
+    
+    return user;
+}
+
+- (QFUser *)getUserById:(NSUInteger)uid context:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:User_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == %i", kUid, uid]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results[0];
+    }
+    return nil;
+}
+
 #pragma mark - Networking
 
 - (AFHTTPRequestOperation *)getPPTListPage:(NSUInteger)page
@@ -506,6 +636,57 @@
     };
     
     AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/comments/expert_comments_list.json" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)getCommentsListNews:(QFNews *)news
+                                           Page:(NSUInteger)page
+                                        success:(void (^)(NSArray *array))success
+                                        failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *param = @{@"comment_id": news.nid,
+                            @"page": [NSNumber numberWithInt:page],
+                            @"per_page": [NSNumber numberWithInt:10]};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                QFNews *news1 = [self getNewsById:news.nid.integerValue context:temporaryContext];
+                if (page == 1) {
+                    news1.comments = [NSSet set];
+                }
+                [self createCommentsListFromNetworking:responseObject news:news1 context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success(responseObject);
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/user_comments/user_comment_list.json" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }
