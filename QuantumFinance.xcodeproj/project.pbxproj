@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2692C9D618F43375005466AB /* QFPerspectiveTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2692C9D518F43375005466AB /* QFPerspectiveTableViewController.m */; };
 		2692C9D918F44087005466AB /* QFPerspectiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2692C9D818F44087005466AB /* QFPerspectiveCell.m */; };
+		26954B0D18F6809500AE2783 /* QFNewsDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26954B0C18F6809500AE2783 /* QFNewsDetailTableViewController.m */; };
 		26A088E618F553CF006006B0 /* QFNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A088E518F553CF006006B0 /* QFNewsDetailViewController.m */; };
 		26A4442E18EFEDCC00525AB3 /* QFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A4442D18EFEDCC00525AB3 /* QFSettingTableViewController.m */; };
 		26A4443118EFEE6300525AB3 /* QFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A4443018EFEE6300525AB3 /* QFSettingViewController.m */; };
@@ -69,6 +70,8 @@
 		2692C9D518F43375005466AB /* QFPerspectiveTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFPerspectiveTableViewController.m; sourceTree = "<group>"; };
 		2692C9D718F44087005466AB /* QFPerspectiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFPerspectiveCell.h; sourceTree = "<group>"; };
 		2692C9D818F44087005466AB /* QFPerspectiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFPerspectiveCell.m; sourceTree = "<group>"; };
+		26954B0B18F6809500AE2783 /* QFNewsDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNewsDetailTableViewController.h; sourceTree = "<group>"; };
+		26954B0C18F6809500AE2783 /* QFNewsDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNewsDetailTableViewController.m; sourceTree = "<group>"; };
 		26A088E418F553CF006006B0 /* QFNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNewsDetailViewController.h; sourceTree = "<group>"; };
 		26A088E518F553CF006006B0 /* QFNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNewsDetailViewController.m; sourceTree = "<group>"; };
 		26A4442C18EFEDCC00525AB3 /* QFSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFSettingTableViewController.h; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 				26A4442D18EFEDCC00525AB3 /* QFSettingTableViewController.m */,
 				26A088E418F553CF006006B0 /* QFNewsDetailViewController.h */,
 				26A088E518F553CF006006B0 /* QFNewsDetailViewController.m */,
+				26954B0B18F6809500AE2783 /* QFNewsDetailTableViewController.h */,
+				26954B0C18F6809500AE2783 /* QFNewsDetailTableViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -531,6 +536,7 @@
 				42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */,
 				42E992DA18F3D6B200A5E88A /* QFUser.m in Sources */,
 				D86368A418F16A8E003C8BC9 /* EGORefreshTableHeaderView.m in Sources */,
+				26954B0D18F6809500AE2783 /* QFNewsDetailTableViewController.m in Sources */,
 				42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */,
 				42E992D718F3D6B200A5E88A /* QFComment.m in Sources */,
 				42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */,
