@@ -12,6 +12,8 @@
 
 #import "QFNewsDetailViewController.h"
 
+#define kRefreshTime    @"recommendRefreshTime"
+
 
 @interface QFPerspectiveTableViewController ()
 {
@@ -235,10 +237,6 @@
     
     if (!cell) {
         cell = [[QFPerspectiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        //UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 340, 135)];
-        
-        // cell.type = self.type;
-        //cell.button.frame=CGRectMake(10, 10, 300, 135);
         cell.button.tag=100+[indexPath row];
         //NSLog(@"tag:%ld",(long)cell.button.tag);
         [cell.button addTarget:self action:@selector(cellButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -355,16 +353,10 @@
     return _reloading; // should return if data source model is reloading
 }
 
-/*- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
-    //BMNewsManager *manager = [BMNewsManager sharedManager];
-    
-    //NewsCategory *category = [manager getNewsCategoryById:self.categoryId context:[manager managedObjectContext]];
-    //return category.refreshTime;// should return date data source was last changed
-    //BMNewsManager *manager = [BMNewsManager sharedManager];
-    //return _news.refreshDate;
-    
-}*/
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kRefreshTime];    
+}
 
 
 @end

@@ -10,4 +10,13 @@
 
 @interface QFNewsDetailTableViewController : GTTableViewController
 
+- (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
+
+- (void)startLoadingTableViewData;
+
+- (void)doneLoadingTableViewData;
+
+@property(nonatomic,strong)QFNews *news;
+
+
 @end

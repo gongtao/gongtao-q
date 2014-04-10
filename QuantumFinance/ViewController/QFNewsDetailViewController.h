@@ -8,7 +8,7 @@
 
 #import "QFSubBaseViewController.h"
 
-@interface QFNewsDetailViewController : QFSubBaseViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface QFNewsDetailViewController : QFSubBaseViewController
 
 @property(nonatomic,strong)QFNews *news;
 

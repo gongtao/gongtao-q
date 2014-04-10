@@ -16,7 +16,7 @@
     
     BOOL _reloading;
     
-    NSInteger _postId;
+    //NSInteger _postId;
 }
 
 - (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
