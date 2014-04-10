@@ -12,6 +12,8 @@
 
 #import "QFHeadLineView.h"
 
+#define kRefreshTime    @"recommendRefreshTime"
+
 @interface QFRecommendViewController ()
 {
     NSUInteger _loadCount;
@@ -34,6 +36,8 @@
 @property (nonatomic, assign) QFNewsType type;
 
 - (void)_selectProductType:(UIButton *)button;
+
+- (void)_refreshLastUpdateTime;
 
 @end
 
@@ -64,6 +68,7 @@
         view.delegate = self;
         [self.tableView addSubview:view];
         _refreshHeaderView = view;
+        [_refreshHeaderView refreshLastUpdatedDate];
     }
 }
 
@@ -127,6 +132,11 @@
                      completion:^(BOOL finished){
                          [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                      }];
+}
+
+- (void)_refreshLastUpdateTime
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate new] forKey:kRefreshTime];
 }
 
 #pragma mark - Override
@@ -241,8 +251,8 @@
     _loadCount--;
     if (_loadCount == 0) {
         _reloading = NO;
+        [self _refreshLastUpdateTime];
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-//    [self refreshLastUpdateTime];
     }
 }
 
@@ -289,9 +299,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    if (count == 0) {
-        return 1;
-    }
     return count+2;
 }
 
@@ -321,7 +328,7 @@
 
 - (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
-    return [NSDate new];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kRefreshTime];
 }
 
 @end

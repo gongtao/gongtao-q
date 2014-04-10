@@ -21,6 +21,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = [UIImage imageNamed:@"首页PPT默认图.png"];
+        [self addSubview:imageView];
+        
         _cyclePageView = [[GTCyclePageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
         _cyclePageView.scrollView.showsHorizontalScrollIndicator = YES;
         _cyclePageView.dataSource = self;
