@@ -25,7 +25,7 @@
         // Initialization code
         self.backgroundColor = Color_DarkBlue;
         
-        _titleArray = @[@"分享", @"收藏", @"评论", @"赞"];
+        _titleArray = @[@"分享按钮", @"收藏按钮", @"评论按钮", @"点赞按钮"];
         __block CGFloat x = 0.0;
         [_titleArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             QFCustomButton *button = [[QFCustomButton alloc] initWithFrame:CGRectMake(x, 0.0, 80.0, frame.size.height)];
@@ -34,8 +34,11 @@
             button.titleLabel.font = [UIFont systemFontOfSize:14.0];
             [button setTitle:obj forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"底部导航%@.png", obj]] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"底部导航%@.png", obj]] forState:UIControlStateHighlighted];
+            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"文章详情_%@.png", obj]] forState:UIControlStateNormal];
+            if (obj==@"收藏按钮"|| obj==@"点赞按钮")
+            {
+                [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"文章详情_%@_点击态.png", obj]] forState:UIControlStateHighlighted];
+            }            
             [button addTarget:self action:@selector(_buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
             button.tag = 100+idx;
             [self addSubview:button];
@@ -43,6 +46,38 @@
         }];
     }
     return self;
+}
+
+- (void)_buttonSelected:(UIButton *)button
+{
+    int index=button.tag-100;
+    switch (index) {
+        case 0:
+            if ([self.delegate respondsToSelector:@selector(shareButtonClicked)]) {
+                [self.delegate shareButtonClicked];
+            }
+            break;
+        case 1:
+            if ([self.delegate respondsToSelector:@selector(collectButtonClicked)]) {
+                [self.delegate collectButtonClicked];
+            }
+            
+            break;
+        case 2:
+            if ([self.delegate respondsToSelector:@selector(commentButtonClicked)]) {
+                [self.delegate commentButtonClicked];
+            }
+            
+            break;
+        case 3:
+            if ([self.delegate respondsToSelector:@selector(dingButtonClicked)]) {
+                [self.delegate dingButtonClicked];
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 /*

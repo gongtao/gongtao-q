@@ -8,9 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol QFNewsDetailToolBarDelegate <NSObject>
+
+- (void)shareButtonClicked;
+
+- (void)collectButtonClicked;
+
+- (void)commentButtonClicked;
+
+- (void)dingButtonClicked;
+
+@end
+
 @interface QFNewsDetailToolBar : UIView
 {
     NSArray *_titleArray;
 }
+
+@property (nonatomic, weak) id<QFNewsDetailToolBarDelegate> delegate;
 
 @end

@@ -12,11 +12,14 @@
 
 #import "QFNewsDetailToolBar.h"
 
+#import "QFNewsDetailToolBar.h"
+
 @interface QFNewsDetailViewController ()
 {
     
 }
 
+@property(nonatomic,strong)QFNewsDetailToolBar *toolBar;
 
 @end
 
@@ -35,6 +38,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.toolBar = [[QFNewsDetailToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.view.frame), 320.0, 55.0)];
+    self.toolBar.delegate = self;
+    [self.view addSubview:self.toolBar];
+    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     id appDelegate = [UIApplication sharedApplication].delegate;
     
