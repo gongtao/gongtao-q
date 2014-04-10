@@ -130,6 +130,16 @@
     }
 }
 
+- (void)createHistoryProductListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context
+{
+    if (array && (NSNull *)array != [NSNull null] && array.count>0) {
+        [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
+            QFProduct *product = [self createProduct:obj context:context];
+            product.isHistory = [NSNumber numberWithBool:YES];
+        }];
+    }
+}
+
 #pragma mark - Database
 
 //Product
@@ -217,6 +227,23 @@
     
     [request setEntity:entity];
     [request setPredicate:[NSPredicate predicateWithFormat:@"(%K == %i) AND (%K > %i) AND (%K <= %i)", kType, type, kOrder, 0, kOrder, 10]];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (!error && results.count > 0) {
+        return results;
+    }
+    return nil;
+}
+
+- (NSArray *)getHistoryProductsByContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:Product_Entity inManagedObjectContext:context];
+    
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%K == YES", kIsHistory]];
     
     NSError *error;
     NSArray *results = [context executeFetchRequest:request error:&error];
@@ -687,6 +714,57 @@
     };
     
     AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/user_comments/user_comment_list.json" parameters:param success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
+- (AFHTTPRequestOperation *)getHistoryListPage:(NSUInteger)page
+                                       success:(void (^)(NSArray *array))success
+                                       failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *param = @{@"page": [NSNumber numberWithInt:page],
+                            @"per_page": [NSNumber numberWithInt:10]};
+    
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                if (page == 1) {
+                    NSArray *array = [self getHistoryProductsByContext:temporaryContext];
+                    [array enumerateObjectsUsingBlock:^(QFProduct *obj, NSUInteger idx, BOOL *stop){
+                        obj.isHistory = [NSNumber numberWithBool:NO];
+                    }];
+                }
+                [self createHistoryProductListFromNetworking:responseObject context:temporaryContext];
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success(responseObject);
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/loan_informations/promoted_products.json" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

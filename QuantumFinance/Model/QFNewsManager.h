@@ -37,6 +37,7 @@
 #define kPid                    @"pid"
 #define kOrder                  @"order"
 #define kType                   @"type"
+#define kIsHistory              @"isHistory"
 
 #define HeadLine_Entity         @"QFHeadLine"
 #define kHid                    @"hid"
@@ -67,6 +68,8 @@ typedef enum {
 
 - (void)createCommentsListFromNetworking:(NSArray *)array news:(QFNews *)news context:(NSManagedObjectContext *)context;
 
+- (void)createHistoryProductListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context;
+
 /** Database **/
 
 //Product
@@ -75,6 +78,8 @@ typedef enum {
 - (QFProduct *)getProductById:(NSUInteger)pid context:(NSManagedObjectContext *)context;
 
 - (NSArray *)getRecommendProductsByType:(QFNewsType)type context:(NSManagedObjectContext *)context;
+
+- (NSArray *)getHistoryProductsByContext:(NSManagedObjectContext *)context;
 
 //News
 - (QFNews *)createNews:(NSDictionary *)dic context:(NSManagedObjectContext *)context;
@@ -119,5 +124,9 @@ typedef enum {
                                            Page:(NSUInteger)page
                                         success:(void (^)(NSArray *array))success
                                         failure:(void (^)(NSError *error))failure;
+
+- (AFHTTPRequestOperation *)getHistoryListPage:(NSUInteger)page
+                                       success:(void (^)(NSArray *array))success
+                                       failure:(void (^)(NSError *error))failure;
 
 @end
