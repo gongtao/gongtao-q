@@ -55,13 +55,13 @@
     commentCountLable.text=[NSString stringWithFormat:@"评论：%@",news.commentCount];
     viewCountLable.text=[NSString stringWithFormat:@"浏览：%@",news.viewCount];
     [imageView setImageWithURL:[NSURL URLWithString:news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
-    NSLog(@"%@",news.logo);
+    //NSLog(@"%@",news.logo);
     UIImage *image1=imageView.image;
     //UIImage *image1=[UIImage imageNamed:@"社交账号weibo.png"];
     UIImage *image2=[UIImage imageNamed:@"视角_阴影.png"];
     UIImage *image3=[UIImage imageNamed:@"视角_左起.png"];
     UIGraphicsBeginImageContext(imageView.frame.size);
-    NSLog(@"%f,%f",imageView.frame.size.width,imageView.frame.size.height);
+    //NSLog(@"%f,%f",imageView.frame.size.width,imageView.frame.size.height);
     [image1 drawInRect:CGRectMake(5, 5, 110, 100)];
     [image2 drawInRect:CGRectMake(78, 0, 34, 130)];
     [image3 drawInRect:CGRectMake(79, 0, 31, 130)];

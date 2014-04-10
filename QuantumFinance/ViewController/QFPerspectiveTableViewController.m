@@ -10,6 +10,9 @@
 
 #import "QFPerspectiveCell.h"
 
+#import "QFNewsDetailViewController.h"
+
+
 @interface QFPerspectiveTableViewController ()
 {
     NSString *_cache;
@@ -237,6 +240,7 @@
         // cell.type = self.type;
         //cell.button.frame=CGRectMake(10, 10, 300, 135);
         cell.button.tag=100+[indexPath row];
+        //NSLog(@"tag:%ld",(long)cell.button.tag);
         [cell.button addTarget:self action:@selector(cellButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -248,10 +252,12 @@
 
 -(void)cellButtonPressed:(UIButton*)button
 {
-    NSIndexPath *indexPath=[NSIndexPath indexPathWithIndex:button.tag];
+    int tag=button.tag-100;
+    //NSLog(@"tag:%d",tag);
+    NSIndexPath *indexPath=[NSIndexPath indexPathForItem:tag inSection:0];
    QFNews *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
-    //vc.news=news;
+    QFNewsDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
+    vc.news=news;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

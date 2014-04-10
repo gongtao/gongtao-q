@@ -11,6 +11,7 @@
 #import "QFCustomButton.h"
 
 
+
 @interface QFMineViewController ()
 
 @end
@@ -132,7 +133,7 @@ static NSString *cellIdentifier = @"mineCell";
         default:
             break;
     }
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:vcIdentifier];
+     UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:vcIdentifier];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
