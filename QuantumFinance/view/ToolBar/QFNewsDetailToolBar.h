@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface QFNewsDetailToolBar : UIView
+{
+    NSArray *_titleArray;
+}
 
 @end

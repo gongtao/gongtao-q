@@ -30,7 +30,7 @@
     titleLable.font=[UIFont systemFontOfSize:14];
     titleLable.textAlignment=NSTextAlignmentRight;
     
-    UILabel *synopsisLable=[[UILabel alloc]initWithFrame:CGRectMake(110, 43, 180, 37)];
+    UILabel *synopsisLable=[[UILabel alloc]initWithFrame:CGRectMake(120, 34, 170, 37)];
     synopsisLable.backgroundColor=[UIColor clearColor];
     synopsisLable.textColor=[UIColor colorWithHexString:@"666666"];
     synopsisLable.font=[UIFont systemFontOfSize:12];
@@ -55,8 +55,9 @@
     commentCountLable.text=[NSString stringWithFormat:@"评论：%@",news.commentCount];
     viewCountLable.text=[NSString stringWithFormat:@"浏览：%@",news.viewCount];
     [imageView setImageWithURL:[NSURL URLWithString:news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
-    //NSLog(@"%@",news.logo);
+    NSLog(@"%@",news.logo);
     UIImage *image1=imageView.image;
+    NSLog(@"%f,%f",image1.size.width,image1.size.height);
     //UIImage *image1=[UIImage imageNamed:@"社交账号weibo.png"];
     UIImage *image2=[UIImage imageNamed:@"视角_阴影.png"];
     UIImage *image3=[UIImage imageNamed:@"视角_左起.png"];
