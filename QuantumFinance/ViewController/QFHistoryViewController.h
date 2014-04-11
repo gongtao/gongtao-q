@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QFHistoryViewController : UIViewController
+#import <GTTableViewController.h>
+
+#import "EGORefreshTableHeaderView.h"
+
+@interface QFHistoryViewController : GTTableViewController <EGORefreshTableHeaderDelegate>
+{
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    
+    BOOL _reloading;
+}
+
+- (void)refreshLastUpdateTime;
+
+- (void)startLoadingTableViewData;
+
+- (void)doneLoadingTableViewData;
 
 @end
