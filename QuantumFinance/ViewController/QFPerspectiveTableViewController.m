@@ -256,10 +256,9 @@
    QFNews *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
     //NSLog(@"%@",news.nid);
     if (news) {
-        QFNewsDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
+        QFNewsDetailViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
         vc.news=news;
         [self.navigationController pushViewController:vc animated:YES];
-
     }
         
 }

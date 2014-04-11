@@ -438,15 +438,32 @@
         comment.date = [QFUtils dateFromString:date];
     }
     
-    comment.user = [self createUser:@{@"id":dic[@"user_id"],
-                                      @"avatar":dic[@"user_avatar"],
-                                      @"name":dic[@"user_avatar"]}
-                            context:context];
+    NSArray *array = @[@"id", @"avatar", @"name"];
+    NSArray *objArray = @[@"user_id", @"user_avatar", @"user_name"];
     
-    comment.replyUser = [self createUser:@{@"id":dic[@"to_user_id"],
-                                           @"avatar":dic[@"to_user_avatar"],
-                                           @"name":dic[@"to_user_avatar"]}
-                                 context:context];
+    NSMutableDictionary *userDic = [[NSMutableDictionary alloc] initWithCapacity:3];
+    
+    [objArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop){
+        id object = dic[obj];
+        if (object && (NSNull *)object != [NSNull null]) {
+            userDic[array[idx]] = object;
+        }
+    }];
+    
+    comment.user = [self createUser:userDic context:context];
+    
+    objArray = @[@"to_user_id", @"to_user_avatar", @"to_user_name"];
+    
+    [userDic removeAllObjects];
+    
+    [objArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop){
+        id object = dic[obj];
+        if (object && (NSNull *)object != [NSNull null]) {
+            userDic[array[idx]] = object;
+        }
+    }];
+    
+    comment.replyUser = [self createUser:userDic context:context];
 
     return comment;
 }
