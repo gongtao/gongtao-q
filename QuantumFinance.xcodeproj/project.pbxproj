@@ -15,6 +15,8 @@
 		26A4442E18EFEDCC00525AB3 /* QFSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A4442D18EFEDCC00525AB3 /* QFSettingTableViewController.m */; };
 		26A4443118EFEE6300525AB3 /* QFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A4443018EFEE6300525AB3 /* QFSettingViewController.m */; };
 		26D5F53518F55657009D4FF8 /* QFNewsDetailToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D5F53418F55657009D4FF8 /* QFNewsDetailToolBar.m */; };
+		4205932F18F7B8DD00A96C97 /* QFHistorySectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205932E18F7B8DD00A96C97 /* QFHistorySectionView.m */; };
+		4205933218F7B96D00A96C97 /* QFHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205933118F7B96D00A96C97 /* QFHistoryCell.m */; };
 		42C6FD5D18E3BCF000913D4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD5C18E3BCF000913D4D /* Foundation.framework */; };
 		42C6FD5F18E3BCF000913D4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD5E18E3BCF000913D4D /* CoreGraphics.framework */; };
 		42C6FD6118E3BCF000913D4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6FD6018E3BCF000913D4D /* UIKit.framework */; };
@@ -83,6 +85,10 @@
 		26A4443018EFEE6300525AB3 /* QFSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFSettingViewController.m; sourceTree = "<group>"; };
 		26D5F53318F55657009D4FF8 /* QFNewsDetailToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QFNewsDetailToolBar.h; path = QuantumFinance/view/ToolBar/QFNewsDetailToolBar.h; sourceTree = SOURCE_ROOT; };
 		26D5F53418F55657009D4FF8 /* QFNewsDetailToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QFNewsDetailToolBar.m; path = QuantumFinance/view/ToolBar/QFNewsDetailToolBar.m; sourceTree = SOURCE_ROOT; };
+		4205932D18F7B8DD00A96C97 /* QFHistorySectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QFHistorySectionView.h; path = QuantumFinance/View/QFHistorySectionView.h; sourceTree = SOURCE_ROOT; };
+		4205932E18F7B8DD00A96C97 /* QFHistorySectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QFHistorySectionView.m; path = QuantumFinance/View/QFHistorySectionView.m; sourceTree = SOURCE_ROOT; };
+		4205933018F7B96D00A96C97 /* QFHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QFHistoryCell.h; path = QuantumFinance/View/TableCell/QFHistoryCell.h; sourceTree = SOURCE_ROOT; };
+		4205933118F7B96D00A96C97 /* QFHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QFHistoryCell.m; path = QuantumFinance/View/TableCell/QFHistoryCell.m; sourceTree = SOURCE_ROOT; };
 		42C6FD5918E3BCF000913D4D /* QuantumFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuantumFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6FD5C18E3BCF000913D4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42C6FD5E18E3BCF000913D4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -343,6 +349,8 @@
 				42E992CD18F3CB7E00A5E88A /* QFHeadLineView.m */,
 				42D261E118F5132E00824DA4 /* QFProductProgress.h */,
 				42D261E218F5132E00824DA4 /* QFProductProgress.m */,
+				4205932D18F7B8DD00A96C97 /* QFHistorySectionView.h */,
+				4205932E18F7B8DD00A96C97 /* QFHistorySectionView.m */,
 			);
 			name = View;
 			path = view;
@@ -386,6 +394,8 @@
 				2692C9D818F44087005466AB /* QFPerspectiveCell.m */,
 				2693F16418F6FEA60083340C /* QFCommentCell.h */,
 				2693F16518F6FEA60083340C /* QFCommentCell.m */,
+				4205933018F7B96D00A96C97 /* QFHistoryCell.h */,
+				4205933118F7B96D00A96C97 /* QFHistoryCell.m */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -543,9 +553,11 @@
 				42E992DA18F3D6B200A5E88A /* QFUser.m in Sources */,
 				D86368A418F16A8E003C8BC9 /* EGORefreshTableHeaderView.m in Sources */,
 				26954B0D18F6809500AE2783 /* QFNewsDetailTableViewController.m in Sources */,
+				4205933218F7B96D00A96C97 /* QFHistoryCell.m in Sources */,
 				42C6FD9918E4096500913D4D /* QFBaseViewController.m in Sources */,
 				42E992D718F3D6B200A5E88A /* QFComment.m in Sources */,
 				42C6FDA718E416BD00913D4D /* QFUtils.m in Sources */,
+				4205932F18F7B8DD00A96C97 /* QFHistorySectionView.m in Sources */,
 				26A4443118EFEE6300525AB3 /* QFSettingViewController.m in Sources */,
 				42C6FD9C18E4098D00913D4D /* QFSubBaseViewController.m in Sources */,
 				26A4442E18EFEDCC00525AB3 /* QFSettingTableViewController.m in Sources */,

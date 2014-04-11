@@ -34,6 +34,8 @@
 
 - (void)_initFooterView;
 
+- (NSUInteger)_getDataCount;
+
 @end
 
 @implementation QFHistoryViewController
@@ -83,7 +85,7 @@
     if (_reloading) {
         [self doneLoadingTableViewData];
     }
-    NSInteger count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    NSInteger count = [self _getDataCount];
     if (0 == count) {
         _page = 1;
         [_refreshHeaderView egoRefreshScrollViewWillBeginDragging:self.tableView];
@@ -162,6 +164,16 @@
     }
 }
 
+- (NSUInteger)_getDataCount
+{
+    __block NSUInteger count = 0;
+    [[self.fetchedResultsController sections] enumerateObjectsUsingBlock:^(NSArray *obj, NSUInteger idx, BOOL *stop){
+        count += obj.count;
+    }];
+    return count;
+}
+
+#pragma mark - Super Method
 
 - (NSFetchRequest *)fetchRequest
 {
@@ -264,20 +276,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    NSUInteger count = [self _getDataCount];
     if (0 == count) {
         _page = 1;
     }
     else {
         _page = count/10+((count%10==0)?1:2);
     }
-    return count+1;
+    
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    int count = [self _getDataCount];
     if (row == count) {
         if (count < 10) {
             return 0.0;
