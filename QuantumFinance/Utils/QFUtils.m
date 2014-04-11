@@ -29,7 +29,7 @@
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSString *dateStr = [[str stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ssz"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     return [formatter dateFromString:dateStr];
 }
 

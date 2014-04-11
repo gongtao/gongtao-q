@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QFHistorySectionView : UIView
+@interface QFHistorySectionView : UITableViewHeaderFooterView
 
 @end

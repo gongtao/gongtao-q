@@ -8,6 +8,8 @@
 
 #import "QFHistoryViewController.h"
 
+#import "QFHistorySectionView.h"
+
 @interface QFHistoryViewController ()
 {
     NSString *_cache;
@@ -20,7 +22,7 @@
     
     AFHTTPRequestOperation *_request;
     
-    UITableViewCell *_footerView;
+    UIView *_footerView;
     
     NSInteger _page;
     
@@ -56,6 +58,7 @@
     self.rowAnimation = UITableViewRowAnimationNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[QFHistorySectionView class] forHeaderFooterViewReuseIdentifier:@"headerView"];
     
     if (_refreshHeaderView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)];
@@ -71,6 +74,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
 }
 
 #pragma mark - Public
@@ -119,22 +128,20 @@
 - (void)_loadMore:(UIButton *)sender
 {
     [self _finishLoadMore:NO];
-    _request=[[QFNewsManager sharedManager]getNewsListPage:_page
-                                                   success:^(NSArray *array){
-                                                       [self _finishLoadMore:YES];
-                                                       
-                                                   }
-                                                   failure:^(NSError *array){
-                                                       [self _finishLoadMore:YES];
-                                                   }];
+    _request = [[QFNewsManager sharedManager] getHistoryListPage:_page
+                                                         success:^(NSArray *array){
+                                                             [self doneLoadingTableViewData];
+                                                         }
+                                                         failure:^(NSError *error){
+                                                             [self doneLoadingTableViewData];
+                                                         }];
 }
 
 - (void)_initFooterView
 {
     if (!_footerView) {
-        _footerView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
         _footerView.backgroundColor = [UIColor clearColor];
-        _footerView.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _footerButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
         _footerButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -167,8 +174,8 @@
 - (NSUInteger)_getDataCount
 {
     __block NSUInteger count = 0;
-    [[self.fetchedResultsController sections] enumerateObjectsUsingBlock:^(NSArray *obj, NSUInteger idx, BOOL *stop){
-        count += obj.count;
+    [[self.fetchedResultsController sections] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        count += [obj numberOfObjects];
     }];
     return count;
 }
@@ -181,7 +188,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:Product_Entity inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:NO];
-    request.predicate = [NSPredicate predicateWithFormat:@"isHistory == Yes"];
+    request.predicate = [NSPredicate predicateWithFormat:@"isHistory == YES"];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
     return request;
 }
@@ -204,11 +211,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    if ([indexPath row] == count) {
-        [self _initFooterView];
-        return _footerView;
-    }
     static NSString *CellIdentifier = @"HistoryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -274,7 +276,28 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if ([[self.fetchedResultsController sections] count] == section) {
+        [self _initFooterView];
+        return _footerView;
+    }
+    QFHistorySectionView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
+    if (!sectionView) {
+        sectionView = [[QFHistorySectionView alloc] initWithReuseIdentifier:@"headerView"];
+    }
+    return sectionView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([[self.fetchedResultsController sections] count] == section) {
+        return 50.0;
+    }
+    return 48.0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSUInteger count = [self _getDataCount];
     if (0 == count) {
@@ -283,24 +306,23 @@
     else {
         _page = count/10+((count%10==0)?1:2);
     }
-    
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]+1;
+    if (count < 10) {
+        return [[self.fetchedResultsController sections] count];
+    }
+    return [[self.fetchedResultsController sections] count]+1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ([[self.fetchedResultsController sections] count] == section) {
+        return 0;
+    }
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int row = [indexPath row];
-    int count = [self _getDataCount];
-    if (row == count) {
-        if (count < 10) {
-            return 0.0;
-        }
-        else {
-            return 50.0;
-        }
-    }
-    return 120;
-    
+    return 58.0;
 }
 
 #pragma mark EGORefreshTableHeaderDelegate

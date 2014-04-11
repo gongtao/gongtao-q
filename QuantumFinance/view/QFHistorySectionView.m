@@ -10,11 +10,12 @@
 
 @implementation QFHistorySectionView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.contentView.backgroundColor = [UIColor greenColor];
     }
     return self;
 }
