@@ -80,20 +80,23 @@
     
     [self _initFooterView];
     
-    _labelContent = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];//必须是这组值,这个frame是初设的，没关系，后面还会重新设置其size。
+    _labelContent = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
+    //必须是这组值,这个frame是初设的，没关系，后面还会重新设置其size。
     [_labelContent setNumberOfLines:0];  //必须是这组值
     
     UIFont *font = [UIFont systemFontOfSize:12];
     CGSize size = CGSizeMake(300,3000);
     NSString *newContent=[NSString stringWithFormat:@"%@\n\n评论：%@ 浏览：%@ %@",_news.content,_news.commentCount,_news.viewCount,_news.date];
-    CGSize labelsize = [newContent sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];//UILineBreakModeWordWrap:以空格为界,保留整个单词
-    _labelContent.frame = CGRectMake(10, 240, labelsize.width, labelsize.height );
+    CGSize labelsize = [newContent sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    //UILineBreakModeWordWrap:以空格为界,保留整个单词
+    _labelContent.frame = CGRectMake(10, 0, 300, labelsize.height );
     _labelContent.backgroundColor = [UIColor colorWithHexString:@"f0f4f7"];
     _labelContent.textColor = [UIColor colorWithHexString:@"666666"];
     _labelContent.text = newContent;
     _labelContent.font = font;
     _contentHeight=[NSNumber numberWithFloat:labelsize.height];
-    
+    //NSLog(@"contentHeight:%@",_contentHeight);
+    //NSLog(@"%@",newContent);
     [NSFetchedResultsController deleteCacheWithName:[self cacheName]];
 
 }
@@ -223,7 +226,10 @@
 
 - (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    QFComment *comment = [fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"%i",[indexPath row]);
+    NSIndexPath *newIndex=[NSIndexPath indexPathForItem:[indexPath row]-3 inSection:0];
+    QFComment *comment = [fetchedResultsController objectAtIndexPath:newIndex];
+    NSLog(@"%@",comment);
     //QFPerspectiveCell *perspectiveCell = (QFPerspectiveCell *)cell;
     //[perspectiveCell configPerspectiveCell:news];
     
@@ -235,7 +241,7 @@
 {
     int row=[indexPath row];
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    if (row == count) {
+    if (row == count+3) {
         [self _initFooterView];
         return _footerView;
     }
@@ -249,22 +255,23 @@
         }
         return _firstCell;
     }
-    else if (row==1)
+    else if (row == 1)
     {
         if (!_secondCell) {
             _secondCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            UILabel *LabelTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 190, 82, 40)];
+            UILabel *LabelTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 82, 30)];
             //LabelTitle.backgroundColor= [UIColor colorWithPatternImage:[UIImage imageNamed:@"xx.png"]];
-            LabelTitle.backgroundColor=[UIColor colorWithHexString:@"0f9fde"];
+            LabelTitle.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
             LabelTitle.font=[UIFont systemFontOfSize:14];
             LabelTitle.textColor=[UIColor colorWithHexString:@"ffffff"];
             LabelTitle.text=_news.title;
+            NSLog(@"title:%@",_news.title);
             [_secondCell addSubview:LabelTitle];
         }
         return _secondCell;
     }
-    else if (row==2)
+    else if (row == 2)
     {
         if (!_thirdCell) {
             _thirdCell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -312,7 +319,7 @@
 {
     NSInteger row = [indexPath row];
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
-    if (row == count) {
+    if (row == count+3) {
         if (count < 10) {
             return 0.0;
         }
@@ -324,11 +331,13 @@
         return 156.0;
     }
     else if (row == 1) {
-        return 50.0;
+        
+        return 40.0;
     }
     else if(row==2)
     {
-        return _contentHeight.floatValue;
+        return _contentHeight.floatValue+20;
+        //return 50;
     }
     return 108.0;
 }
