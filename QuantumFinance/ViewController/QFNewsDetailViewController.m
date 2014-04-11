@@ -38,6 +38,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSLog(@"%@", self.news);
     self.toolBar = [[QFNewsDetailToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.view.frame), 320.0, 55.0)];
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];

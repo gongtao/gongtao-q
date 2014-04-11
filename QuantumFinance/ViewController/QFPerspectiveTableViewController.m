@@ -255,10 +255,13 @@
     NSIndexPath *indexPath=[NSIndexPath indexPathForItem:tag inSection:0];
    QFNews *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
     //NSLog(@"%@",news.nid);
-    QFNewsDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
-    vc.news=news;
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    if (news) {
+        QFNewsDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
+        vc.news=news;
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
+        
 }
 
 #pragma mark Data Source Loading / Reloading Methods
