@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E3200" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cvh-XF-J4v">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
@@ -79,7 +79,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aVL-he-fN6"/>
                     <connections>
-                        <segue destination="1Aa-dH-KXF" kind="push" id="BFS-Wi-ojB"/>
+                        <segue destination="1Aa-dH-KXF" kind="push" identifier="newsDetailViewController" id="BFS-Wi-ojB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIQ-ri-xoP" userLabel="First Responder" sceneMemberID="firstResponder"/>

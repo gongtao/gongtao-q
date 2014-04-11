@@ -254,7 +254,7 @@
     //NSLog(@"tag:%d",tag);
     NSIndexPath *indexPath=[NSIndexPath indexPathForItem:tag inSection:0];
    QFNews *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"%@",news.nid);
+    //NSLog(@"%@",news.nid);
     QFNewsDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
     vc.news=news;
     [self.navigationController pushViewController:vc animated:YES];
