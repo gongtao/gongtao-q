@@ -29,6 +29,8 @@
 
 @property(nonatomic,strong)NSNumber *contentHeight;
 
+@property(nonatomic,strong)NSNumber *cellHeight;
+
 @property (nonatomic, strong) UITableViewCell *firstCell;
 
 @property (nonatomic, strong) UITableViewCell *secondCell;
@@ -85,12 +87,13 @@
     [_labelContent setNumberOfLines:0];  //必须是这组值
     
     UIFont *font = [UIFont systemFontOfSize:12];
-    CGSize size = CGSizeMake(300,3000);
+    CGSize size = CGSizeMake(282,30000);
     NSString *newContent=[NSString stringWithFormat:@"%@\n\n评论：%@ 浏览：%@ %@",_news.content,_news.commentCount,_news.viewCount,_news.date];
     CGSize labelsize = [newContent sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     //UILineBreakModeWordWrap:以空格为界,保留整个单词
-    _labelContent.frame = CGRectMake(10, 0, 300, labelsize.height );
-    _labelContent.backgroundColor = [UIColor colorWithHexString:@"f0f4f7"];
+    _labelContent.frame = CGRectMake(9, 9, 282, labelsize.height );
+    //_labelContent.backgroundColor = [UIColor colorWithHexString:@"f0f4f7"];
+    _labelContent.backgroundColor=[UIColor clearColor];
     _labelContent.textColor = [UIColor colorWithHexString:@"666666"];
     _labelContent.text = newContent;
     _labelContent.font = font;
@@ -226,10 +229,49 @@
 
 - (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    NSLog(@"%i",[indexPath row]);
+    //NSLog(@"%i",[indexPath row]);
+    //cell.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
     NSIndexPath *newIndex=[NSIndexPath indexPathForItem:[indexPath row]-3 inSection:0];
     QFComment *comment = [fetchedResultsController objectAtIndexPath:newIndex];
     NSLog(@"%@",comment);
+    
+    UILabel *labelComment = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
+    [labelComment setNumberOfLines:0];
+    UIFont *font = [UIFont systemFontOfSize:12];
+    NSString *content=comment.content;
+    CGSize size = CGSizeMake(246,3000);
+    CGSize labelsize = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    //UILineBreakModeWordWrap:以空格为界,保留整个单词
+    labelComment.frame = CGRectMake(45, 24, 246, labelsize.height );
+    labelComment.backgroundColor=[UIColor clearColor];
+    //labelComment.backgroundColor = [UIColor colorWithHexString:@"f0f4f7"];
+    labelComment.textColor = [UIColor colorWithHexString:@"666666"];
+    labelComment.text = content;
+    labelComment.font = font;
+    _cellHeight=[NSNumber numberWithFloat:labelsize.height];
+    
+    CGFloat height=_cellHeight.floatValue+24>45?_cellHeight.floatValue+24:45;
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(9, 0, 300, height)];
+    view.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+    [view addSubview:labelComment];
+    
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(9, 9, 27, 27)];
+    [imageView setImageWithURL:[NSURL URLWithString:comment.user.avatar] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
+    imageView.backgroundColor=[UIColor whiteColor];
+    NSLog(@"%@",comment.user.avatar);
+    
+    [view addSubview:imageView];
+    
+    UILabel *userName=[[UILabel alloc]initWithFrame:CGRectMake(45, 9, 200, 12)];
+    userName.backgroundColor=[UIColor clearColor];
+    userName.textColor = [UIColor colorWithHexString:@"0e9fde"];
+    userName.text = comment.user.name;
+    userName.font = font;
+    [view addSubview:userName];
+    
+    [cell addSubview:view];
+
+    
     //QFPerspectiveCell *perspectiveCell = (QFPerspectiveCell *)cell;
     //[perspectiveCell configPerspectiveCell:news];
     
@@ -248,8 +290,8 @@
     else if (row == 0) {
         if (!_firstCell) {
             _firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            _firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 300, 180)];
+            //_firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
             [imageView setImageWithURL:[NSURL URLWithString:_news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
             [_firstCell addSubview:imageView];
         }
@@ -259,15 +301,29 @@
     {
         if (!_secondCell) {
             _secondCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            UILabel *LabelTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 82, 30)];
+            //_secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UILabel *LabelTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+            LabelTitle.numberOfLines=0;
+            UIFont *font=[UIFont systemFontOfSize:14];
+            CGSize size = CGSizeMake(280,200);
+            CGSize labelsize = [_news.title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+            LabelTitle.frame=CGRectMake(9, 9, labelsize.width+20, 30);
+            if (labelsize.height>50) {
+                LabelTitle.adjustsFontSizeToFitWidth = YES;
+            }
+           
             //LabelTitle.backgroundColor= [UIColor colorWithPatternImage:[UIImage imageNamed:@"xx.png"]];
+            LabelTitle.textAlignment = UITextAlignmentCenter;
             LabelTitle.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
             LabelTitle.font=[UIFont systemFontOfSize:14];
             LabelTitle.textColor=[UIColor colorWithHexString:@"ffffff"];
             LabelTitle.text=_news.title;
-            NSLog(@"title:%@",_news.title);
+            UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(labelsize.width+29, 9, 14, 30)];
+            imageView.image=[UIImage imageNamed:@"文章详情_文章标题底板_右终.png"];
+                        //NSLog(@"title:%@",_news.title);
             [_secondCell addSubview:LabelTitle];
+            [_secondCell addSubview:imageView];
+
         }
         return _secondCell;
     }
@@ -275,8 +331,13 @@
     {
         if (!_thirdCell) {
             _thirdCell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            _thirdCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [_thirdCell addSubview:_labelContent];
+            _thirdCell.backgroundColor=[UIColor clearColor];
+            UIView *view=[[UIView alloc]initWithFrame:CGRectMake(9, 0, 300, _contentHeight.floatValue+18)];
+            view.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+            [view addSubview:_labelContent];
+            //_thirdCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [_thirdCell addSubview:view];
+            
         }
         return _thirdCell;
         
@@ -332,14 +393,15 @@
     }
     else if (row == 1) {
         
-        return 40.0;
+        return 48.0;
     }
     else if(row==2)
     {
-        return _contentHeight.floatValue+20;
+        return _contentHeight.floatValue+27;
         //return 50;
     }
-    return 108.0;
+    
+    return _cellHeight.floatValue+24>45?_cellHeight.floatValue+24:45;
 }
 
 

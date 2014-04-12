@@ -25,19 +25,26 @@
         // Initialization code
         self.backgroundColor = Color_DarkBlue;
         
-        _titleArray = @[@"分享按钮", @"收藏按钮", @"评论按钮", @"点赞按钮"];
+        _titleArray = @[@"分享", @"收藏", @"评论", @"点赞"];
         __block CGFloat x = 0.0;
         [_titleArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             QFCustomButton *button = [[QFCustomButton alloc] initWithFrame:CGRectMake(x, 0.0, 80.0, frame.size.height)];
             button.imageRect = CGRectMake(28.0, 6.0, 24.0, 24.0);
-            button.titleRect = CGRectMake(26.0, 30.0, 28.0, 20.0);
+            
             button.titleLabel.font = [UIFont systemFontOfSize:14.0];
-            [button setTitle:obj forState:UIControlStateNormal];
+            if (obj==@"点赞") {
+                button.titleRect = CGRectMake(34.0, 30.0, 28.0, 20.0);
+                [button setTitle:@"赞" forState:UIControlStateNormal];
+            }
+            else{
+                button.titleRect = CGRectMake(26.0, 30.0, 28.0, 20.0);
+                [button setTitle:obj forState:UIControlStateNormal];
+            }
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"文章详情_%@.png", obj]] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"文章详情_%@按钮.png", obj]] forState:UIControlStateNormal];
             if (obj==@"收藏按钮"|| obj==@"点赞按钮")
             {
-                [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"文章详情_%@_点击态.png", obj]] forState:UIControlStateHighlighted];
+                [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"文章详情_%@按钮_点击态.png", obj]] forState:UIControlStateHighlighted];
             }            
             [button addTarget:self action:@selector(_buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
             button.tag = 100+idx;

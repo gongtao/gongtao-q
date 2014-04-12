@@ -43,8 +43,8 @@
     self.toolBar = [[QFNewsDetailToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.view.frame)-55, 320.0, 55.0)];
     NSLog(@"%f",CGRectGetMaxY(self.view.frame));
     self.toolBar.delegate = self;
-    [self.view addSubview:self.toolBar];
     
+    [self.view addSubview:self.toolBar];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     id appDelegate = [UIApplication sharedApplication].delegate;
     
@@ -57,11 +57,12 @@
     
     QFNewsDetailTableViewController *commentVC = [[QFNewsDetailTableViewController alloc] initWithRequest:request cacheName:@"cachePerspectiveComment"];
     commentVC.news=_news;
-    commentVC.view.frame=CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height);
-    commentVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    commentVC.view.frame=CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height-55-y);
+    commentVC.tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-55-y);
     NSLog(@"%f,%f",self.view.bounds.size.width,self.view.bounds.size.height);
     [self addChildViewController:commentVC];
     [self.view addSubview:commentVC.view];
+    
     [commentVC startLoadingTableViewData];
 
 }
