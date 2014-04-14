@@ -10,10 +10,16 @@
 
 @interface QFSettingTableViewController ()
 
+@property(nonatomic,strong)UITableViewCell *firstCell;
+
+@property(nonatomic,strong)UITableViewCell *lastCell;
+
+@property(nonatomic,strong)UITextField *currTextField;
 
 @end
 
 static NSString *cellIdentifier = @"settingCell";
+
 
 @implementation QFSettingTableViewController
 
@@ -59,21 +65,59 @@ static NSString *cellIdentifier = @"settingCell";
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 5;
+    return 7;
 }
+
+-(void)exitButtonTap:(id)sender
+{}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //static NSString *cellIdentifier = @"settingCell";
+    if ([indexPath row]==0) {
+        if (!_firstCell) {
+            _firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            _firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 225, 90)];
+            imageView.center=CGPointMake(self.view.frame.size.width/2, 90);
+            imageView.image=[UIImage imageNamed:@"头像底板.png"];
+            
+            
+            UIControl *back=[[UIControl alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 175)];
+            [back addTarget:self action:@selector(backgroundTap) forControlEvents:UIControlEventTouchDown];
+            [back addSubview:imageView];
+            [_firstCell addSubview:back];
+        }
+        return _firstCell;
+    }
+    else if ([indexPath row]==6)
+    {
+        if (!_lastCell) {
+            _lastCell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Nil];
+            _lastCell.selectionStyle=UITableViewCellSelectionStyleNone;
+            UIButton *exitButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
+            exitButton.center=CGPointMake(self.view.frame.size.width/2, 55);
+            exitButton.backgroundColor=[UIColor colorWithHexString:@"ff0000"];
+            [exitButton setTitle:@"退出登录" forState:UIControlStateNormal];
+            //[exitButton setTitle:@"退出登录" forState:UIControlStateHighlighted];
+            [exitButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+            //[exitButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateHighlighted];
+            exitButton.titleLabel.font=[UIFont systemFontOfSize:12];
+            [exitButton addTarget:self action:@selector(exitButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+            [_lastCell addSubview:exitButton];
+        }
+        return _lastCell;
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     //if (!cell) {
         //UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    cell.layer.borderWidth=1;
-    cell.layer.borderColor=[UIColor colorWithHexString:@"0e9fde"].CGColor;
-    cell.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
-    UITextField *textField=[[UITextField alloc]initWithFrame:CGRectMake(10, 0, 280, 30)];
-    textField.center=CGPointMake(self.view.frame.size.width/2, 15);
+    
+    //cell.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+    UITextField *textField=[[UITextField alloc]initWithFrame:CGRectMake(10, 0, 300, 30)];
+    //textField.center=CGPointMake(self.view.frame.size.width/2, 15);
     //textField.backgroundColor=[UIColor clearColor];
+    textField.layer.borderWidth=1;
+    textField.layer.borderColor=[UIColor colorWithHexString:@"0e9fde"].CGColor;
 
     textField.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
     //[textField setBorderStyle:UITextBorderStyleLine];
@@ -86,7 +130,7 @@ static NSString *cellIdentifier = @"settingCell";
     
     textField.delegate=self;
     
-    [cell.contentView addSubview:textField];
+    [cell addSubview:textField];
     /*UIView *verticalLine1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 30)];
     UIView *verticalLine2=[[UIView alloc]initWithFrame:CGRectMake(300, 0, 1, 30)];
     UIView *horizontalLine1=[[UIView alloc]initWithFrame:CGRectMake(0, 30, 300, 1)];
@@ -107,28 +151,28 @@ static NSString *cellIdentifier = @"settingCell";
     textLabel.font=[UIFont systemFontOfSize:12];
     //textLabel.textAlignment=UITextAlignmentCenter;
     switch ([indexPath row]) {
-        case 0:
-            textLabel.text=@"昵称";
+        case 1:
+            textLabel.text=@"  昵称";
             textField.text=@"Soda Lee";
             break;
-        case 1:
-            textLabel.text=@"手机";
+        case 2:
+            textLabel.text=@"  手机";
             textField.keyboardType=UIKeyboardTypePhonePad;
             textField.text=@"13900000000";
             break;
-        case 2:
-            textLabel.text=@"密码";
+        case 3:
+            textLabel.text=@"  密码";
             textField.secureTextEntry = YES;
             textField.text=@"passWord";
             break;
-        case 3:
-            textLabel.text=@"邮箱";
+        case 4:
+            textLabel.text=@"  邮箱";
             textField.keyboardType=UIKeyboardTypeEmailAddress;
             textField.text=@"sodalee@126.com";
             break;
-        case 4:
+        case 5:
         {
-            textLabel.text=@"社交账号";
+            textLabel.text=@"  社交账号";
             UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 53, 20)];
             UIImageView *imagView1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
             imagView1.image=[UIImage imageNamed:@"社交账号weibo.png"];
@@ -156,6 +200,13 @@ static NSString *cellIdentifier = @"settingCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([indexPath row]==0) {
+        return 175;
+    }
+    else if ([indexPath row]==6)
+    {
+        return 110;
+    }
     return 30;
 }
 
@@ -165,6 +216,17 @@ static NSString *cellIdentifier = @"settingCell";
     return YES;
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _currTextField=textField;
+}
+
+-(void)backgroundTap
+{
+    if (_currTextField) {
+        [_currTextField resignFirstResponder];
+    }
+}
 - (CGRect)leftViewRectForBounds:(CGRect)bounds
 {
     return CGRectMake(50, 12, 70, 15);
