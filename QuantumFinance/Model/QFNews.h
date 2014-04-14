@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * isCollect;
+@property (nonatomic, retain) NSNumber * isGood;
 @property (nonatomic, retain) NSNumber * isNew;
 @property (nonatomic, retain) NSString * logo;
 @property (nonatomic, retain) NSNumber * nid;

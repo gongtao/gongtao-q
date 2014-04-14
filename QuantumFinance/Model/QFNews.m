@@ -16,6 +16,7 @@
 @dynamic content;
 @dynamic date;
 @dynamic isCollect;
+@dynamic isGood;
 @dynamic isNew;
 @dynamic logo;
 @dynamic nid;

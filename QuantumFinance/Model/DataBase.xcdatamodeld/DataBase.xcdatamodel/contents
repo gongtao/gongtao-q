@@ -20,6 +20,7 @@
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isCollect" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isGood" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isNew" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>

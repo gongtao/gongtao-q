@@ -787,5 +787,59 @@
     return op;
 }
 
+- (AFHTTPRequestOperation *)getPraiseNews:(QFNews *)news
+                                     Page:(NSUInteger)page
+                                  success:(void (^)(void))success
+                                  failure:(void (^)(NSError *error))failure
+{
+    void (^requestSuccess)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject != [NSNull null]) {
+//            NSLog(@"%@", responseObject);
+            
+            NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            temporaryContext.parentContext = [self managedObjectContext];
+            
+            [temporaryContext performBlock:^{
+                NSNumber *status = responseObject[@"status"];
+                if (status.boolValue) {
+                    news.isGood = [NSNumber numberWithBool:YES];
+                }
+                else {
+                    [temporaryContext.parentContext performBlock:^{
+                        NSLog(@"praise fail");
+                        if (failure) {
+                            failure(nil);
+                        }
+                    }];
+                }
+                [self saveContext:temporaryContext];
+                // save parent to disk asynchronously
+                [temporaryContext.parentContext performBlock:^{
+                    [self saveContext:temporaryContext.parentContext];
+                    if (success) {
+                        success();
+                    }
+                }];
+            }];
+        }
+        else {
+            if (failure) {
+                failure(nil);
+            }
+        }
+    };
+    
+    void (^requestFailure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        if (failure) {
+            failure(error);
+        }
+    };
+    
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/comments/praise.json" parameters:@{@"id": news.nid} success:requestSuccess failure:requestFailure];
+    NSLog(@"request: %@", op.request.URL.absoluteString);
+    return op;
+}
+
 
 @end
