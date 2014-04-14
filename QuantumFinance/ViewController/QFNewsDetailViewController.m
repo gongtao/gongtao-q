@@ -51,6 +51,7 @@
     //Good=NO;
     self.toolBar = [[QFNewsDetailToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.view.frame)-55, 320.0, 55.0)];
     self.toolBar.delegate = self;
+    //_toolBar.tag=101;
     [_toolBar checkDingButton:Good];
     [_toolBar checkCollectButton:Collected];
     

@@ -148,10 +148,10 @@
             </objects>
             <point key="canvasLocation" x="1020" y="1001"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Collection View Controller - 我的收藏-->
         <scene sceneID="a8r-zx-Qk3">
             <objects>
-                <viewController storyboardIdentifier="collectionViewController" id="INM-1t-pHS" customClass="QFCollectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionViewController" title="我的收藏" id="INM-1t-pHS" customClass="QFCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gJY-Lr-k2Y"/>
                         <viewControllerLayoutGuide type="bottom" id="LI3-MH-Czt"/>

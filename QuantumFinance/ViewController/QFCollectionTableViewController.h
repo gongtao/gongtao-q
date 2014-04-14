@@ -10,4 +10,6 @@
 
 @interface QFCollectionTableViewController : GTTableViewController
 
+- (id)initWithRequest:(NSFetchRequest *)request cacheName:(NSString *)cache;
+
 @end
