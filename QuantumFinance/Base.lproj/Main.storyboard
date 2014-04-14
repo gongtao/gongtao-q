@@ -141,11 +141,31 @@
                     <connections>
                         <segue destination="4GS-ro-L74" kind="push" identifier="aboutViewController" id="C3v-1c-X24"/>
                         <segue destination="VXk-SN-W4C" kind="push" identifier="settingViewController" id="M7N-xt-dd1"/>
+                        <segue destination="INM-1t-pHS" kind="push" identifier="collectionViewController" id="5h2-bm-jFK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xs0-lV-XrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1020" y="1001"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="a8r-zx-Qk3">
+            <objects>
+                <viewController storyboardIdentifier="collectionViewController" id="INM-1t-pHS" customClass="QFCollectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gJY-Lr-k2Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="LI3-MH-Czt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tem-dC-jF9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lsm-vz-oBI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SXb-GB-oNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713" y="2350"/>
         </scene>
         <!--Setting View Controller - 个人设置-->
         <scene sceneID="mau-Yo-HJb">

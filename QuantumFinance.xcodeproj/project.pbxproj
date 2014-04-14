@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2692141318FBF7B700BD21EC /* QFCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2692141218FBF7B700BD21EC /* QFCollectionViewController.m */; };
+		2692141618FBF7D800BD21EC /* QFCollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2692141518FBF7D800BD21EC /* QFCollectionTableViewController.m */; };
 		2692C9D618F43375005466AB /* QFPerspectiveTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2692C9D518F43375005466AB /* QFPerspectiveTableViewController.m */; };
 		2692C9D918F44087005466AB /* QFPerspectiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2692C9D818F44087005466AB /* QFPerspectiveCell.m */; };
 		2693F16618F6FEA60083340C /* QFCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2693F16518F6FEA60083340C /* QFCommentCell.m */; };
@@ -69,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2692141118FBF7B700BD21EC /* QFCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFCollectionViewController.h; sourceTree = "<group>"; };
+		2692141218FBF7B700BD21EC /* QFCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFCollectionViewController.m; sourceTree = "<group>"; };
+		2692141418FBF7D700BD21EC /* QFCollectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFCollectionTableViewController.h; sourceTree = "<group>"; };
+		2692141518FBF7D800BD21EC /* QFCollectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFCollectionTableViewController.m; sourceTree = "<group>"; };
 		2692C9D418F43375005466AB /* QFPerspectiveTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFPerspectiveTableViewController.h; sourceTree = "<group>"; };
 		2692C9D518F43375005466AB /* QFPerspectiveTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFPerspectiveTableViewController.m; sourceTree = "<group>"; };
 		2692C9D718F44087005466AB /* QFPerspectiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFPerspectiveCell.h; sourceTree = "<group>"; };
@@ -324,6 +330,10 @@
 				26A088E518F553CF006006B0 /* QFNewsDetailViewController.m */,
 				26954B0B18F6809500AE2783 /* QFNewsDetailTableViewController.h */,
 				26954B0C18F6809500AE2783 /* QFNewsDetailTableViewController.m */,
+				2692141118FBF7B700BD21EC /* QFCollectionViewController.h */,
+				2692141218FBF7B700BD21EC /* QFCollectionViewController.m */,
+				2692141418FBF7D700BD21EC /* QFCollectionTableViewController.h */,
+				2692141518FBF7D800BD21EC /* QFCollectionTableViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -542,12 +552,14 @@
 				26A088E618F553CF006006B0 /* QFNewsDetailViewController.m in Sources */,
 				42D261E318F5132E00824DA4 /* QFProductProgress.m in Sources */,
 				42C6FDB418E41F5100913D4D /* DataBase.xcdatamodeld in Sources */,
+				2692141618FBF7D800BD21EC /* QFCollectionTableViewController.m in Sources */,
 				2692C9D618F43375005466AB /* QFPerspectiveTableViewController.m in Sources */,
 				42C6FD9618E3D30B00913D4D /* QFNavigationController.m in Sources */,
 				42E992D418F3D6B100A5E88A /* QFProduct.m in Sources */,
 				26D5F53518F55657009D4FF8 /* QFNewsDetailToolBar.m in Sources */,
 				42C6FDB118E41AD000913D4D /* QFNavigationBar.m in Sources */,
 				D86368A818F174A4003C8BC9 /* QFRecommendProductCell.m in Sources */,
+				2692141318FBF7B700BD21EC /* QFCollectionViewController.m in Sources */,
 				42E992D118F3D6B100A5E88A /* QFNews.m in Sources */,
 				42C6FDC118E42A1000913D4D /* QFPerspectiveViewController.m in Sources */,
 				42E992DA18F3D6B200A5E88A /* QFUser.m in Sources */,
