@@ -140,6 +140,12 @@
     }
 }
 
+- (void)collectNews:(QFNews *)news collect:(BOOL)isCollect
+{
+    news.isCollect = [NSNumber numberWithBool:isCollect];
+    [self saveContext];
+}
+
 #pragma mark - Database
 
 //Product

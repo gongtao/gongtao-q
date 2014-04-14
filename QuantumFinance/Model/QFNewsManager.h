@@ -70,6 +70,8 @@ typedef enum {
 
 - (void)createHistoryProductListFromNetworking:(NSArray *)array context:(NSManagedObjectContext *)context;
 
+- (void)collectNews:(QFNews *)news collect:(BOOL)isCollect;
+
 /** Database **/
 
 //Product
