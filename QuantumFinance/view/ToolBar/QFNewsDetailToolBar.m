@@ -14,6 +14,9 @@
 
 - (void)_buttonSelected:(UIButton *)button;
 
+-(void)dingButtonDidClick:(UIButton *)button;
+
+
 @end
 
 @implementation QFNewsDetailToolBar
@@ -24,6 +27,8 @@
     if (self) {
         // Initialization code
         self.backgroundColor = Color_DarkBlue;
+        iscollectButtonClicked=NO;
+        isdingButtonClicked=NO;
         
         _titleArray = @[@"分享", @"收藏", @"评论", @"点赞"];
         __block CGFloat x = 0.0;
@@ -65,10 +70,7 @@
             }
             break;
         case 1:
-            if ([self.delegate respondsToSelector:@selector(collectButtonClicked)]) {
-                [self.delegate collectButtonClicked];
-            }
-            
+            [self collectButtonDidClick:button];
             break;
         case 2:
             if ([self.delegate respondsToSelector:@selector(commentButtonClicked)]) {
@@ -77,14 +79,50 @@
             
             break;
         case 3:
-            if ([self.delegate respondsToSelector:@selector(dingButtonClicked)]) {
-                [self.delegate dingButtonClicked];
-            }
+            [self dingButtonDidClick:button];
             break;
             
         default:
             break;
     }
+}
+
+-(void)collectButtonDidClick:(UIButton *)button
+{
+    if (iscollectButtonClicked==NO) {
+        [button setImage:[UIImage imageNamed:@"文章详情_收藏按钮_点击态.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"文章详情_收藏按钮_点击态.png"] forState:UIControlStateHighlighted];
+    }
+    else
+    {
+        [button setImage:[UIImage imageNamed:@"文章详情_收藏按钮.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"文章详情_收藏按钮_点击态.png"] forState:UIControlStateHighlighted];
+    }    
+    if ([self.delegate respondsToSelector:@selector(collectButtonClicked:)])
+    {
+        [self.delegate collectButtonClicked:iscollectButtonClicked];
+    }
+    iscollectButtonClicked=!iscollectButtonClicked;
+}
+
+-(void)dingButtonDidClick:(UIButton *)button
+{
+    if (isdingButtonClicked==NO) {
+        [button setImage:[UIImage imageNamed:@"文章详情_点赞按钮_点击态.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"文章详情_点赞按钮_点击态.png"] forState:UIControlStateHighlighted];
+    }
+    else
+    {
+        [button setImage:[UIImage imageNamed:@"文章详情_点赞按钮.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"文章详情_点赞按钮_点击态.png"] forState:UIControlStateHighlighted];
+    }
+    if ([self.delegate respondsToSelector:@selector(dingButtonClicked:)])
+    {
+        [self.delegate dingButtonClicked:isdingButtonClicked];
+    }
+
+    isdingButtonClicked=!isdingButtonClicked;
+    
 }
 
 /*

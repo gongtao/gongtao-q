@@ -290,7 +290,7 @@
     else if (row == 0) {
         if (!_firstCell) {
             _firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            //_firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
             [imageView setImageWithURL:[NSURL URLWithString:_news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
             [_firstCell addSubview:imageView];
@@ -301,7 +301,7 @@
     {
         if (!_secondCell) {
             _secondCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            //_secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
             UILabel *LabelTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
             LabelTitle.numberOfLines=0;
             UIFont *font=[UIFont systemFontOfSize:14];
@@ -335,7 +335,7 @@
             UIView *view=[[UIView alloc]initWithFrame:CGRectMake(9, 0, 300, _contentHeight.floatValue+18)];
             view.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
             [view addSubview:_labelContent];
-            //_thirdCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _thirdCell.selectionStyle = UITableViewCellSelectionStyleNone;
             [_thirdCell addSubview:view];
             
         }
@@ -350,6 +350,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     [self configCell:cell cellForRowAtIndexPath:indexPath fetchedResultsController:fetchedResultsController];
     return cell;

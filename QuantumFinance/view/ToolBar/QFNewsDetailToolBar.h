@@ -12,17 +12,19 @@
 
 - (void)shareButtonClicked;
 
-- (void)collectButtonClicked;
+- (void)collectButtonClicked:(BOOL)isbuttonclicked;
 
 - (void)commentButtonClicked;
 
-- (void)dingButtonClicked;
+- (void)dingButtonClicked:(BOOL)isbuttonclicked;
 
 @end
 
 @interface QFNewsDetailToolBar : UIView
 {
     NSArray *_titleArray;
+    BOOL iscollectButtonClicked;
+    BOOL isdingButtonClicked;
 }
 
 @property (nonatomic, weak) id<QFNewsDetailToolBarDelegate> delegate;

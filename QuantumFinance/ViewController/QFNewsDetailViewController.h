@@ -8,7 +8,9 @@
 
 #import "QFSubBaseViewController.h"
 
-@interface QFNewsDetailViewController : QFSubBaseViewController
+#import "QFNewsDetailToolBar.h"
+
+@interface QFNewsDetailViewController : QFSubBaseViewController<QFNewsDetailToolBarDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)QFNews *news;
 
