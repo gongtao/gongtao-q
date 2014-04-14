@@ -130,10 +130,10 @@
     [self _finishLoadMore:NO];
     _request = [[QFNewsManager sharedManager] getHistoryListPage:_page
                                                          success:^(NSArray *array){
-                                                             [self doneLoadingTableViewData];
+                                                             [self _finishLoadMore:YES];
                                                          }
                                                          failure:^(NSError *error){
-                                                             [self doneLoadingTableViewData];
+                                                             [self _finishLoadMore:YES];
                                                          }];
 }
 
@@ -291,14 +291,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if ([[self.fetchedResultsController sections] count] == section) {
-        return 50.0;
-    }
-    return 48.0;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
     NSUInteger count = [self _getDataCount];
     if (0 == count) {
         _page = 1;
@@ -306,14 +298,24 @@
     else {
         _page = count/10+((count%10==0)?1:2);
     }
-    if (count < 10) {
-        return [[self.fetchedResultsController sections] count];
+    if ([[self.fetchedResultsController sections] count] == section) {
+        if (count < 10) {
+            return 0.0;
+        }
+        return 50.0;
     }
+    return 48.0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSLog(@"section num %i", [[self.fetchedResultsController sections] count]);
     return [[self.fetchedResultsController sections] count]+1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"section %i", section);
     if ([[self.fetchedResultsController sections] count] == section) {
         return 0;
     }
@@ -341,6 +343,27 @@
 {
     return [NSDate new];
     
+}
+
+#pragma mark - 
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:self.rowAnimation];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:self.rowAnimation];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:self.rowAnimation];
+            break;
+        case NSFetchedResultsChangeMove:
+//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:self.rowAnimation];
+            break;
+            
+    }
 }
 
 @end
