@@ -10,4 +10,8 @@
 
 @interface QFHistorySectionView : UITableViewHeaderFooterView
 
+- (void)setFirstSection:(BOOL)isFirst;
+
+- (void)setSectionTitle:(NSString *)title;
+
 @end

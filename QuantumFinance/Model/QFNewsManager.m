@@ -788,7 +788,7 @@
         }
     };
     
-    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/loan_informations/promoted_products.json" parameters:param success:requestSuccess failure:requestFailure];
+    AFHTTPRequestOperation *op = [_manager GET:@"/terminal_interface/loan_informations/products_histroy.json" parameters:param success:requestSuccess failure:requestFailure];
     NSLog(@"request: %@", op.request.URL.absoluteString);
     return op;
 }

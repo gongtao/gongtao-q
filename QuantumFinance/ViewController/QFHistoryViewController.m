@@ -10,6 +10,8 @@
 
 #import "QFHistorySectionView.h"
 
+#import "QFHistoryCell.h"
+
 @interface QFHistoryViewController ()
 {
     NSString *_cache;
@@ -212,11 +214,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
     static NSString *CellIdentifier = @"HistoryCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    QFHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
+        cell = [[QFHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     [self configCell:cell cellForRowAtIndexPath:indexPath fetchedResultsController:fetchedResultsController];
@@ -286,6 +287,9 @@
     if (!sectionView) {
         sectionView = [[QFHistorySectionView alloc] initWithReuseIdentifier:@"headerView"];
     }
+    [sectionView setFirstSection:(0 == section)];
+    id<NSFetchedResultsSectionInfo> obj = [[self.fetchedResultsController sections] objectAtIndex:section];
+    [sectionView setSectionTitle:[obj name]];
     return sectionView;
 }
 
@@ -304,7 +308,7 @@
         }
         return 50.0;
     }
-    return 48.0;
+    return 49.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -324,7 +328,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 58.0;
+    return 59.0;
 }
 
 #pragma mark EGORefreshTableHeaderDelegate
