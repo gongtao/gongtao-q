@@ -15,6 +15,8 @@
 @interface QFNewsDetailViewController ()
 {
     CGFloat y;
+    BOOL Good;
+    BOOL Collected;
     
 }
 
@@ -42,11 +44,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSLog(@"%@", self.news);
+    //NSLog(@"%@", self.news);
     y = IS_IOS7?64.0:44.0;
+    Good=_news.isGood.boolValue;
+    Collected=_news.isCollect.boolValue;
+    //Good=NO;
     self.toolBar = [[QFNewsDetailToolBar alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.view.frame)-55, 320.0, 55.0)];
-    NSLog(@"%f",CGRectGetMaxY(self.view.frame));
     self.toolBar.delegate = self;
+    [_toolBar checkDingButton:Good];
+    [_toolBar checkCollectButton:Collected];
     
     [self.view addSubview:self.toolBar];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -77,12 +83,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)isGood
+{
+    //NSLog(@"isgood:%i",Good);
+    return Good;
+}
+
+-(BOOL)isCollected
+{
+    return  Collected;
+}
+
 - (void)shareButtonClicked
 {}
 
-- (void)collectButtonClicked:(BOOL)isbuttonclicked
+- (void)collectButtonClicked:(BOOL)collected
 {
+    _news.isCollect=[NSNumber numberWithBool:collected];
+    [[QFNewsManager sharedManager]collectNews:_news collect:collected];
+    Collected=!Collected;
+    //- (void)collectNews:(QFNews *)news collect:(BOOL)isCollect
     
+}
+
+- (void)dingButtonClicked
+{
+    _news.isGood=[NSNumber numberWithInt:1];
+    [[QFNewsManager sharedManager]getPraiseNews:_news
+                                        success:^{}
+                                        failure:^(NSError *error){}
+     ];
+    Good=YES;
+    
+}
+
+-(void)clickPublishButton:(UIButton *)button
+{
 }
 
 - (void)commentButtonClicked
@@ -150,14 +186,7 @@
     //[mask addSubview:maskComment];
 }
 
-- (void)dingButtonClicked:(BOOL)isbuttonclicked
-{
-    
-}
 
--(void)clickPublishButton:(UIButton *)button
-{
-}
 
 -(void)clickCancelButton:(UIButton *)button
 {

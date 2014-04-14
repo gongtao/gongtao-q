@@ -16,17 +16,25 @@
 
 - (void)commentButtonClicked;
 
-- (void)dingButtonClicked:(BOOL)isbuttonclicked;
+- (void)dingButtonClicked;
+
+@required
+
+-(BOOL)isGood;
+
+-(BOOL)isCollected;
 
 @end
 
 @interface QFNewsDetailToolBar : UIView
 {
     NSArray *_titleArray;
-    BOOL iscollectButtonClicked;
-    BOOL isdingButtonClicked;
 }
 
 @property (nonatomic, weak) id<QFNewsDetailToolBarDelegate> delegate;
+
+-(void)checkDingButton:(BOOL)isGood;
+
+-(void)checkCollectButton:(BOOL)Collected;
 
 @end
