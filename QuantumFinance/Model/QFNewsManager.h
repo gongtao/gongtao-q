@@ -130,7 +130,6 @@ typedef enum {
                                        failure:(void (^)(NSError *error))failure;
 
 - (AFHTTPRequestOperation *)getPraiseNews:(QFNews *)news
-                                     Page:(NSUInteger)page
                                   success:(void (^)(void))success
                                   failure:(void (^)(NSError *error))failure;
 
