@@ -307,22 +307,37 @@
             UIFont *font=[UIFont systemFontOfSize:14];
             CGSize size = CGSizeMake(280,200);
             CGSize labelsize = [_news.title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-            LabelTitle.frame=CGRectMake(9, 9, labelsize.width+20, 30);
+            
             if (labelsize.height>50) {
                 LabelTitle.adjustsFontSizeToFitWidth = YES;
             }
            
             //LabelTitle.backgroundColor= [UIColor colorWithPatternImage:[UIImage imageNamed:@"xx.png"]];
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 95.0, 31.0)];
+            imageView.image = [[UIImage imageNamed:@"理财评估_标题底板.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 31.0, 80.0)];
+            CGFloat rate=(labelsize.width)/80;
+            imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity,rate , 1.0);
+            
+            NSLog(@"imageview:%f",imageView.frame.size.width);
+            NSLog(@"image:%f,%f",imageView.image.size.width,imageView.image.size.height);
+            NSLog(@"label:%f",labelsize.width);
+            LabelTitle.frame=CGRectMake(9, 9, imageView.frame.size.width, 30);
+            imageView.frame=CGRectMake(9, 9, imageView.frame.size.width+20, 30);
+            [_secondCell addSubview:imageView];
+
             LabelTitle.textAlignment = UITextAlignmentCenter;
-            LabelTitle.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
+            LabelTitle.backgroundColor=[UIColor clearColor];
+           // LabelTitle.backgroundColor=[UIColor colorWithPatternImage:imageView.image];
+            //[UIColor colorWithHexString:@"0e9fde"];
             LabelTitle.font=[UIFont systemFontOfSize:14];
             LabelTitle.textColor=[UIColor colorWithHexString:@"ffffff"];
             LabelTitle.text=_news.title;
-            UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(labelsize.width+29, 9, 14, 30)];
-            imageView.image=[UIImage imageNamed:@"文章详情_文章标题底板_右终.png"];
+            //UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(labelsize.width+29, 9, 14, 30)];
+            //imageView.image=[UIImage imageNamed:@"文章详情_文章标题底板_右终.png"];
                         //NSLog(@"title:%@",_news.title);
             [_secondCell addSubview:LabelTitle];
-            [_secondCell addSubview:imageView];
+            
 
         }
         return _secondCell;
