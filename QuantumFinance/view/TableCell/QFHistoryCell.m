@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
+@property (nonatomic, strong) UIImageView *iconView;
+
 @end
 
 @implementation QFHistoryCell
@@ -45,9 +47,8 @@
         centerView.image = [UIImage imageNamed:@"历史产品白色底板.png"];
         [self.contentView addSubview:centerView];
         
-        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(8.0, 6.5, 28.0, 28.0)];
-        iconView.image = [UIImage imageNamed:@"首页产品图标.png"];
-        [centerView addSubview:iconView];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(8.0, 6.5, 28.0, 28.0)];
+        [centerView addSubview:_iconView];
         
         UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(292.0, 9.0, 19.0, 41.0)];
         rightView.image = [UIImage imageNamed:@"历史产品白色底板终.png"];
@@ -88,6 +89,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     _timeLabel.text = [formatter stringFromDate:product.time];
+    
+    [_iconView setImageWithURL:[NSURL URLWithString:product.logo] placeholderImage:[UIImage imageNamed:@"首页产品图标.png"]];
 }
 
 @end

@@ -52,7 +52,6 @@
         [self addSubview:bgView];
         
         _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(8.0, 8.0, 28.0, 28.0)];
-        _iconView.image = [UIImage imageNamed:@"首页产品图标.png"];
         [bgView addSubview:_iconView];
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(45.0, 13.0, 151.0, 19.0)];
@@ -199,6 +198,8 @@
     _eairLayer.string = eair;
     _eairLayer.frame = CGRectMake(89.0-size.height/scale, 43.0-size.height/scale/2.0, size.width, size.height);
     [_eairImageView.layer addSublayer:_eairLayer];
+    
+    [_iconView setImageWithURL:[NSURL URLWithString:product.logo] placeholderImage:[UIImage imageNamed:@"首页产品图标.png"]];
 }
 
 @end

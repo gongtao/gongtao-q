@@ -211,6 +211,11 @@
         product.url = show_url;
     }
     
+    NSString *logo = dic[@"logo"];
+    if (logo && (NSNull *)logo != [NSNull null]) {
+        product.logo = [[kBaseURL absoluteString] stringByAppendingString:logo];
+    }
+    
     return product;
 }
 

@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSNumber * deadline;
 @property (nonatomic, retain) NSString * eair;
 @property (nonatomic, retain) NSNumber * isHistory;
+@property (nonatomic, retain) NSString * logo;
 @property (nonatomic, retain) NSString * money;
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSNumber * pid;

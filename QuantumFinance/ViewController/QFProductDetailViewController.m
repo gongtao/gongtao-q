@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
+@property (nonatomic, strong) UIImageView *iconView;
+
 @end
 
 @implementation QFProductDetailViewController

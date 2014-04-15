@@ -36,6 +36,7 @@
         <attribute name="deadline" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="eair" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHistory" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="money" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="pid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>

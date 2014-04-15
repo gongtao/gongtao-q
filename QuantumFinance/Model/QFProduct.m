@@ -16,6 +16,7 @@
 @dynamic deadline;
 @dynamic eair;
 @dynamic isHistory;
+@dynamic logo;
 @dynamic money;
 @dynamic order;
 @dynamic pid;
