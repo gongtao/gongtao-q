@@ -47,6 +47,7 @@
 		42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C6FDC318E42A2800913D4D /* QFHistoryViewController.m */; };
 		42D261E318F5132E00824DA4 /* QFProductProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D261E218F5132E00824DA4 /* QFProductProgress.m */; };
 		42DA94C718E5158E008446F6 /* QFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA94C618E5158E008446F6 /* QFAboutViewController.m */; };
+		42DEAF9E18FCD86B0032105F /* QFProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DEAF9D18FCD86B0032105F /* QFProductDetailViewController.m */; };
 		42E992CB18F3A24000A5E88A /* QFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992CA18F3A24000A5E88A /* QFMineViewController.m */; };
 		42E992CE18F3CB7E00A5E88A /* QFHeadLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992CD18F3CB7E00A5E88A /* QFHeadLineView.m */; };
 		42E992D118F3D6B100A5E88A /* QFNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E992D018F3D6B100A5E88A /* QFNews.m */; };
@@ -142,6 +143,8 @@
 		42D261E218F5132E00824DA4 /* QFProductProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QFProductProgress.m; path = QuantumFinance/View/QFProductProgress.m; sourceTree = SOURCE_ROOT; };
 		42DA94C518E5158E008446F6 /* QFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFAboutViewController.h; sourceTree = "<group>"; };
 		42DA94C618E5158E008446F6 /* QFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFAboutViewController.m; sourceTree = "<group>"; };
+		42DEAF9C18FCD86B0032105F /* QFProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFProductDetailViewController.h; sourceTree = "<group>"; };
+		42DEAF9D18FCD86B0032105F /* QFProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFProductDetailViewController.m; sourceTree = "<group>"; };
 		42E992C918F3A24000A5E88A /* QFMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFMineViewController.h; sourceTree = "<group>"; };
 		42E992CA18F3A24000A5E88A /* QFMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFMineViewController.m; sourceTree = "<group>"; };
 		42E992CC18F3CB7E00A5E88A /* QFHeadLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QFHeadLineView.h; path = QuantumFinance/View/QFHeadLineView.h; sourceTree = SOURCE_ROOT; };
@@ -334,6 +337,8 @@
 				2692141218FBF7B700BD21EC /* QFCollectionViewController.m */,
 				2692141418FBF7D700BD21EC /* QFCollectionTableViewController.h */,
 				2692141518FBF7D800BD21EC /* QFCollectionTableViewController.m */,
+				42DEAF9C18FCD86B0032105F /* QFProductDetailViewController.h */,
+				42DEAF9D18FCD86B0032105F /* QFProductDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				42E992DD18F3D6B200A5E88A /* QFHeadLine.m in Sources */,
 				42E992CB18F3A24000A5E88A /* QFMineViewController.m in Sources */,
 				42C6FDC418E42A2800913D4D /* QFHistoryViewController.m in Sources */,
+				42DEAF9E18FCD86B0032105F /* QFProductDetailViewController.m in Sources */,
 				42C6FD9F18E40AC900913D4D /* QFRootViewController.m in Sources */,
 				42E992CE18F3CB7E00A5E88A /* QFHeadLineView.m in Sources */,
 			);
