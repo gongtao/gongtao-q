@@ -10,6 +10,8 @@
 
 #import "QFRecommendProductCell.h"
 
+#import "QFProductDetailViewController.h"
+
 #import "QFHeadLineView.h"
 
 #define kRefreshTime    @"recommendRefreshTime"
@@ -290,8 +292,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"select:%i", indexPath.row);
+    if (indexPath.row > 1) {
+        QFProductDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"productDetailViewController"];
+        vc.product = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:0]];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDataSource

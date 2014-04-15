@@ -207,6 +207,7 @@
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
     request.predicate = [NSPredicate predicateWithFormat:@"isNew == Yes"];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    request.fetchBatchSize = 8;
     return request;
 }
 

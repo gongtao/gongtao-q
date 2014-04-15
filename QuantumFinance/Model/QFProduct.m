@@ -24,6 +24,7 @@
 @dynamic time;
 @dynamic title;
 @dynamic type;
+@dynamic url;
 @dynamic headline;
 
 @end

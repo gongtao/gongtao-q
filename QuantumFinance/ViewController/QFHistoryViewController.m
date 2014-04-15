@@ -8,6 +8,8 @@
 
 #import "QFHistoryViewController.h"
 
+#import "QFProductDetailViewController.h"
+
 #import "QFHistorySectionView.h"
 
 #import "QFHistoryCell.h"
@@ -192,6 +194,7 @@
     NSSortDescriptor *sortDesciptor = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:NO];
     request.predicate = [NSPredicate predicateWithFormat:@"isHistory == YES"];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDesciptor]];
+    request.fetchBatchSize = 12;
     return request;
 }
 
@@ -251,6 +254,15 @@
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     [self refreshLastUpdateTime];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    QFProductDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"productDetailViewController"];
+    vc.product = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

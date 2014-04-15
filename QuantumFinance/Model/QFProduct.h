@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSDate * time;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSManagedObject *headline;
 
 @end

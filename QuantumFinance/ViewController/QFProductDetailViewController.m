@@ -10,6 +10,8 @@
 
 @interface QFProductDetailViewController ()
 
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 @end
 
 @implementation QFProductDetailViewController
@@ -27,6 +29,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    CGFloat y = CGRectGetMaxY(self.customNavigationBar.frame);
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, y, 320.0, self.view.bounds.size.height-y)];
+    
 }
 
 - (void)didReceiveMemoryWarning

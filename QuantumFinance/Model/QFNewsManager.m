@@ -204,7 +204,11 @@
     if (time && (NSNull *)time != [NSNull null]) {
         product.time = [QFUtils dateFromString:time];
         product.date = [QFUtils stringFromDate:product.time];
-        NSLog(@"%@", product.date);
+    }
+    
+    NSString *show_url = dic[@"show_url"];
+    if (show_url && (NSNull *)show_url != [NSNull null]) {
+        product.url = show_url;
     }
     
     return product;

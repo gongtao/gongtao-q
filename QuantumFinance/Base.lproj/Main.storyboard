@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="1781" y="-385"/>
         </scene>
-        <!--Product Detail View Controller-->
+        <!--Product Detail View Controller - 产品详情-->
         <scene sceneID="2dT-Ms-weL">
             <objects>
-                <viewController storyboardIdentifier="productDetailViewController" id="sgT-8F-fcD" customClass="QFProductDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productDetailViewController" title="产品详情" id="sgT-8F-fcD" customClass="QFProductDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eQ2-Pu-LR3"/>
                         <viewControllerLayoutGuide type="bottom" id="Oq2-1n-gpn"/>

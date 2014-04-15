@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 龚涛. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "QFSubBaseViewController.h"
 
-@interface QFProductDetailViewController : UIViewController
+@interface QFProductDetailViewController : QFSubBaseViewController
+
+@property (nonatomic, strong) QFProduct *product;
 
 @end
