@@ -207,7 +207,9 @@
 
 - (void)configCell:(UITableViewCell *)cell cellForRowAtIndexPath:(NSIndexPath *)indexPath fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    
+    QFProduct *product = [fetchedResultsController objectAtIndexPath:indexPath];
+    [(QFHistoryCell *)cell setLastRow:(indexPath.section == [fetchedResultsController sections].count-1) && (indexPath.row == [[[fetchedResultsController sections] lastObject] numberOfObjects]-1)];
+    [(QFHistoryCell *)cell setProduct:product];
 }
 
 

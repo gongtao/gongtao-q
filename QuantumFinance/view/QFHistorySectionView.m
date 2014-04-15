@@ -52,7 +52,7 @@
         _leftLabel.textAlignment = NSTextAlignmentRight;
         [leftView addSubview:_leftLabel];
         
-        UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(89.0, 9.0, 80.0, 31.0)];
+        UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(88.0, 9.0, 80.0, 31.0)];
         rightView.image = [UIImage imageNamed:@"历史时间蓝色底板.png"];
         [self.contentView addSubview:rightView];
         

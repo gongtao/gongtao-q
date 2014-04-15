@@ -14,6 +14,10 @@
 
 @property (nonatomic, strong) UIImageView *whiteShaftView;
 
+@property (nonatomic, strong) UILabel *productLabel;
+
+@property (nonatomic, strong) UILabel *timeLabel;
+
 @end
 
 @implementation QFHistoryCell
@@ -32,8 +36,58 @@
         _blueShaftView = [[UIImageView alloc] initWithFrame:CGRectMake(88.0, 0.0, 4.0, 59.0)];
         _blueShaftView.image = [UIImage imageNamed:@"历史时间轴蓝.png"];
         [self.contentView addSubview:_blueShaftView];
+        
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(9.0, 9.0, 77.0, 41.0)];
+        leftView.image = [UIImage imageNamed:@"历史产品蓝色底板.png"];
+        [self.contentView addSubview:leftView];
+        
+        UIImageView *centerView = [[UIImageView alloc] initWithFrame:CGRectMake(91.5, 9.0, 201.0, 41.0)];
+        centerView.image = [UIImage imageNamed:@"历史产品白色底板.png"];
+        [self.contentView addSubview:centerView];
+        
+        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(8.0, 6.5, 28.0, 28.0)];
+        iconView.image = [UIImage imageNamed:@"首页产品图标.png"];
+        [centerView addSubview:iconView];
+        
+        UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(292.0, 9.0, 19.0, 41.0)];
+        rightView.image = [UIImage imageNamed:@"历史产品白色底板终.png"];
+        [self.contentView addSubview:rightView];
+        
+        _productLabel = [[UILabel alloc] initWithFrame:CGRectMake(44.0, 0.0, 147.0, 41.0)];
+        _productLabel.font = [UIFont systemFontOfSize:17.0];
+        _productLabel.textColor = [UIColor colorWithHexString:@"666666"];
+        _productLabel.backgroundColor = [UIColor clearColor];
+        [centerView addSubview:_productLabel];
+        
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(28.0, 0.0, 49.0, 41.0)];
+        _timeLabel.font = [UIFont systemFontOfSize:15.0];
+        _timeLabel.textColor = [UIColor whiteColor];
+        _timeLabel.backgroundColor = [UIColor clearColor];
+        [leftView addSubview:_timeLabel];
     }
     return self;
+}
+
+- (void)setLastRow:(BOOL)isLast
+{
+    if (isLast) {
+        _whiteShaftView.frame = CGRectMake(85.0, 0.0, 4.0, 49.5);
+        _blueShaftView.frame = CGRectMake(88.0, 0.0, 4.0, 49.5);
+    }
+    else {
+        _whiteShaftView.frame = CGRectMake(85.0, 0.0, 4.0, 59.0);
+        _blueShaftView.frame = CGRectMake(88.0, 0.0, 4.0, 59.0);
+    }
+    
+}
+
+- (void)setProduct:(QFProduct *)product
+{
+    _productLabel.text = product.title;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    _timeLabel.text = [formatter stringFromDate:product.time];
 }
 
 @end

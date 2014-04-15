@@ -10,4 +10,8 @@
 
 @interface QFHistoryCell : UITableViewCell
 
+- (void)setLastRow:(BOOL)isLast;
+
+- (void)setProduct:(QFProduct *)product;
+
 @end
