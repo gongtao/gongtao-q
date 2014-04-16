@@ -10,9 +10,13 @@
 
 #import <CoreText/CoreText.h>
 
+#import "QFProductProgress.h"
+
 @interface QFProductDetailViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+
+- (void)_buttonPressed:(UIButton *)button;
 
 @end
 
@@ -67,6 +71,7 @@
     y += titleBgView.frame.size.height+9.0;
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(9.0, y, 302.0, 118.0)];
     bgView.backgroundColor = [UIColor colorWithHexString:@"f4f0f7"];
+    bgView.clipsToBounds = YES;
     [_scrollView addSubview:bgView];
     
     //总额度
@@ -77,6 +82,18 @@
     infoLabel1.backgroundColor = [UIColor clearColor];
     [bgView addSubview:infoLabel1];
     
+    UILabel *moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(91.0, infoLabel1.frame.origin.y-0.5, 135.0, 19.0)];
+    moneyLabel.textColor = Color_MainBlue;
+    moneyLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    moneyLabel.backgroundColor = [UIColor clearColor];
+    if ([_product.money rangeOfString:@"￥"].location == NSNotFound) {
+        moneyLabel.text = [NSString stringWithFormat:@"￥%@", _product.money];
+    }
+    else {
+        moneyLabel.text = _product.money;
+    }
+    [bgView addSubview:moneyLabel];
+    
     //年化收益率
     UILabel *infoLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(8.0, CGRectGetMaxY(infoLabel1.frame)+10.0, 85.0, 18.0)];
     infoLabel2.textColor = Color_NewsFont;
@@ -84,6 +101,13 @@
     infoLabel2.text = @"年化收益率：";
     infoLabel2.backgroundColor = [UIColor clearColor];
     [bgView addSubview:infoLabel2];
+    
+    UILabel *eairLabel = [[UILabel alloc] initWithFrame:CGRectMake(95.0, infoLabel2.frame.origin.y-0.5, 80.0, 19.0)];
+    eairLabel.textColor = Color_MainBlue;
+    eairLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    eairLabel.backgroundColor = [UIColor clearColor];
+    eairLabel.text = _product.eair;
+    [bgView addSubview:eairLabel];
     
     //投资期限
     UILabel *infoLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(8.0, CGRectGetMaxY(infoLabel2.frame)+10.0, 85.0, 18.0)];
@@ -120,20 +144,62 @@
     infoLabel4.backgroundColor = [UIColor clearColor];
     [bgView addSubview:infoLabel4];
     
+    UILabel *scheduleLabel = [[UILabel alloc] init];
+    scheduleLabel.textColor = Color_MainBlue;
+    scheduleLabel.font = [UIFont boldSystemFontOfSize:17.0];
+    scheduleLabel.backgroundColor = [UIColor clearColor];
+    [bgView addSubview:scheduleLabel];
+    
+    NSMutableAttributedString *schedule = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", _product.schedule]];
+    [schedule addAttribute:(NSString *)kCTFontAttributeName
+                     value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:17].fontName,17.0,NULL))
+                     range:NSMakeRange(0, schedule.string.length)];
+    CGSize size1 = [schedule size];
+    size1.width += 1.0;
+    
+    NSLog(@"%@", _product.schedule);
+    
     if ([self.product.schedule rangeOfString:@"%"].location == NSNotFound) {
         infoLabel4.text = @"开始时间：";
-//        _scheduleLabel.frame = CGRectMake(83.0, 72.0, size.width, 21.0);
-//        _progress.hidden = YES;
+        scheduleLabel.frame = CGRectMake(95.0, infoLabel4.frame.origin.y-0.5, size1.width, 21.0);
     }
     else {
         infoLabel4.text = @"当前进度：";
-//        _scheduleLabel.frame = CGRectMake(196.0-size.width, 72.0, size.width, 21.0);
-//        NSString *progress = [product.schedule stringByReplacingOccurrencesOfString:@"%" withString:@""];
-//        _progress.frame = CGRectMake(83.0, _infoLabel2.center.y-3.0, 107.0-size.width, 6.0);
-//        [_progress setProgress:progress.floatValue/100.0];
-//        _progress.hidden = NO;
+        
+        QFProductProgress *progress = [[QFProductProgress alloc] initWithFrame:CGRectZero];
+        progress.backgroundColor = [UIColor clearColor];
+        progress.layer.borderColor = [UIColor colorWithHexString:@"66666666"].CGColor;
+        progress.layer.borderWidth = 1.0;
+        [bgView addSubview:progress];
+        
+        scheduleLabel.frame = CGRectMake(220.0-size1.width, infoLabel4.frame.origin.y-0.5, size1.width, 21.0);
+        NSString *progress1 = [_product.schedule stringByReplacingOccurrencesOfString:@"%" withString:@""];
+        progress.frame = CGRectMake(95.0, infoLabel4.center.y-3.0, 119.0-size1.width, 6.0);
+        [progress setProgress:progress1.floatValue/100.0];
     }
-//    _scheduleLabel.text = product.schedule;
+    scheduleLabel.text = schedule.string;
+    
+    UIImageView *urlImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 102.0, 242.0)];
+    urlImageView.image = [UIImage imageNamed:@"首页年化收益底板.png"];
+    urlImageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+    urlImageView.center = CGPointMake(210.5, 59.5);
+    [bgView addSubview:urlImageView];
+    
+    UIImageView *urlBgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(236.0, -1.0, bgView.frame.size.width-236.0, bgView.frame.size.height+4.0)];
+    urlBgImageView.image = [UIImage imageNamed:@"产品详情点击购买底板.png"];
+    [bgView addSubview:urlBgImageView];
+    
+    UILabel *buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(bgView.frame.size.width-108.0, 0.0, 100.0, bgView.frame.size.height)];
+    buttonLabel.font = [UIFont systemFontOfSize:18.0];
+    buttonLabel.backgroundColor = [UIColor clearColor];
+    buttonLabel.textColor = [UIColor whiteColor];
+    buttonLabel.text = @"点击购买";
+    buttonLabel.textAlignment = NSTextAlignmentRight;
+    [bgView addSubview:buttonLabel];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(185.0, 0.0, bgView.frame.size.width-185.0, bgView.frame.size.height)];
+    [button addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:button];
     
     y += bgView.frame.size.height+9.0;
     if (_product.content && _product.content.length>0) {
@@ -180,6 +246,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)_buttonPressed:(UIButton *)button
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_product.url]];
 }
 
 @end

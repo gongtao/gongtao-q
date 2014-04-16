@@ -262,6 +262,10 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
+    if (NSFetchedResultsChangeUpdate == type) {
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row+2 inSection:indexPath.section]] withRowAnimation:self.rowAnimation];
+        return;
+    }
     [super controller:controller didChangeObject:anObject atIndexPath:[NSIndexPath indexPathForRow:indexPath.row+2 inSection:indexPath.section] forChangeType:type newIndexPath:[NSIndexPath indexPathForRow:newIndexPath.row+2 inSection:newIndexPath.section]];
 }
 
