@@ -157,8 +157,6 @@
     CGSize size1 = [schedule size];
     size1.width += 1.0;
     
-    NSLog(@"%@", _product.schedule);
-    
     if ([self.product.schedule rangeOfString:@"%"].location == NSNotFound) {
         infoLabel4.text = @"开始时间：";
         scheduleLabel.frame = CGRectMake(95.0, infoLabel4.frame.origin.y-0.5, size1.width, 21.0);
