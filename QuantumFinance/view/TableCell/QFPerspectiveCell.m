@@ -16,8 +16,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _button=[[UIButton alloc]initWithFrame:CGRectMake(10, 10, 300, 110)];
-        _button.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+        //_button=[[UIButton alloc]initWithFrame:CGRectMake(10, 10, 300, 110)];
+        //_button.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
     }
     return self;
 }
@@ -74,13 +74,18 @@
     //NSLog(@"title:%@",titleLable.text);
     //NSLog(@"synopsis:%@",synopsisLable.text);
 
-    
-    [_button addSubview:titleLable];
-    [_button addSubview:synopsisLable];
-    [_button addSubview:commentCountLable];
-    [_button addSubview:viewCountLable];
-    [_button addSubview:imageView];
-    [_button addSubview:lineView];
+    UIView *background=[[UIView alloc]initWithFrame:CGRectMake(10, 10, 300, 110)];
+    background.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];;
+    //_button.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+    [background addSubview:titleLable];
+    [background addSubview:synopsisLable];
+    [background addSubview:commentCountLable];
+    [background addSubview:viewCountLable];
+    [background addSubview:imageView];
+    [background addSubview:lineView];
+    [self addSubview:background];
+    self.backgroundColor=[UIColor clearColor];
+    self.selectionStyle=UITableViewCellSelectionStyleNone;
     
     
     

@@ -124,16 +124,31 @@
     
     if (!cell) {
         cell = [[QFPerspectiveCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.button.tag=100+[indexPath row];
+        //cell.button.tag=100+[indexPath row];
         //NSLog(@"tag:%ld",(long)cell.button.tag);
-        [cell.button addTarget:self action:@selector(cellButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        //[cell.button addTarget:self action:@selector(cellButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     
     [self configCell:cell cellForRowAtIndexPath:indexPath fetchedResultsController:fetchedResultsController];
-    [cell.contentView addSubview:cell.button];
+    //[cell.contentView addSubview:cell.button];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    QFNews *news = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //NSLog(@"%@",news.nid);
+    if (news) {
+        QFNewsDetailViewController *vc = [self.parentViewController.storyboard instantiateViewControllerWithIdentifier:@"newsDetailViewController"];
+        vc.news=news;
+        //UIView *view=[vc.view viewWithTag:101];
+        //[view removeFromSuperview];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
+}
+
 
 -(void)cellButtonPressed:(UIButton*)button
 {

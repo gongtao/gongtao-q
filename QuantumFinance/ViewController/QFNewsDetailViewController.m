@@ -201,6 +201,11 @@
     //[_mask removeFromSuperview];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return true;
+}
+
 - (void)keyboardWillShow:(NSNotification *)noti
 {
     //键盘输入的界面调整

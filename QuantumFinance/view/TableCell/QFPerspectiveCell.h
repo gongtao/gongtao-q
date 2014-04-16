@@ -10,7 +10,7 @@
 
 @interface QFPerspectiveCell : UITableViewCell
 
-@property (nonatomic,strong)UIButton *button;
+//@property (nonatomic,strong)UIButton *button;
 
 -(void)configPerspectiveCell:(QFNews *)news;
 

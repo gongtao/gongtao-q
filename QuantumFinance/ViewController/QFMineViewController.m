@@ -52,13 +52,24 @@ static NSString *cellIdentifier = @"mineCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    QFCustomButton *button=[[QFCustomButton alloc]initWithFrame:CGRectMake(0, 0, 300, 60)];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(10, 5, 300, 60)];
+    view.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 130, 60)];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(200, 17, 80, 25)];
+    [view addSubview:label];
+    [view addSubview:imageView];
+    label.textColor=[UIColor colorWithHexString:@"666666"];
+    label.font=[UIFont systemFontOfSize:16.0];
+    
+    
+    /*QFCustomButton *button=[[QFCustomButton alloc]initWithFrame:CGRectMake(0, 0, 300, 60)];
     button.imageRect=CGRectMake(0, 0, 130, 60);
     button.titleRect=CGRectMake(200, 17, 80, 25);
     button.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
     [button setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:16.0];
-    button.center=CGPointMake(cell.frame.size.width/2, 40);
+    button.center=CGPointMake(cell.frame.size.width/2, 40);*/
     //NSLog(@"%f,%f",cell.frame.size.width,cell.frame.size.height);
     //UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"我的_图标底板.png"]];
     NSString *imageName,*titleName;
@@ -66,33 +77,34 @@ static NSString *cellIdentifier = @"mineCell";
     switch ([indexPath row]) {
         case 0:
             buttonIdentifier=@"settingViewController";
-            button.tag=50+[indexPath row];
+            //button.tag=50+[indexPath row];
             imageName=@"我的_个人设置图标.png";
             titleName=@"我的账号";
             
             break;
         case 1:
             buttonIdentifier=@"evaluationViewController";
-            button.tag=50+[indexPath row];
+            //button.tag=50+[indexPath row];
             imageName=@"我的_理财评估图标.png";
             titleName=@"理财评估";
             break;
         case 2:
             buttonIdentifier=@"collectionViewController";
-            button.tag=50+[indexPath row];
+            //button.tag=50+[indexPath row];
             imageName=@"我的_我的收藏图标.png";
             titleName=@"我的收藏";
             break;
         case 3:
             buttonIdentifier=@"aboutViewController";
-            button.tag=50+[indexPath row];
+            //button.tag=50+[indexPath row];
             imageName=@"我的_关于我们图标.png";
             titleName=@"关于我们";
             break;
         default:
             break;
     }
-    [button setTitle:titleName forState:UIControlStateNormal];
+    label.text=titleName;
+    //[button setTitle:titleName forState:UIControlStateNormal];
     UIImage *image1=[UIImage imageNamed:@"我的_图标底板.png"];
     UIGraphicsBeginImageContext(image1.size);
     
@@ -106,11 +118,37 @@ static NSString *cellIdentifier = @"mineCell";
     UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
-    [button setImage:resultingImage forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonClickWithIdentifier:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:button];
+    imageView.image=resultingImage;
+    //[button setImage:resultingImage forState:UIControlStateNormal];
+    //[button addTarget:self action:@selector(buttonClickWithIdentifier:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:view];
     
     return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row=[indexPath row];
+    NSString *vcIdentifier;
+    switch (row) {
+        case 0:
+            vcIdentifier=@"settingViewController";
+            break;
+        case 1:
+            vcIdentifier=@"evaluationViewController";
+            break;
+        case 2:
+            vcIdentifier=@"collectionViewController";
+            break;
+        case 3:
+            vcIdentifier=@"aboutViewController";
+            break;
+        default:
+            break;
+    }
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:vcIdentifier];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
