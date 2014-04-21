@@ -8,95 +8,97 @@
 
 #import "QFPerspectiveCell.h"
 
-@implementation QFPerspectiveCell
+@interface QFPerspectiveCell ()
 
+@property (nonatomic, strong) UILabel *titleLable;
+
+@property (nonatomic, strong) UILabel *synopsisLable;
+
+@property (nonatomic, strong) UILabel *commentCountLable;
+
+@property (nonatomic, strong) UILabel *viewCountLable;
+
+@property (nonatomic, strong) UIImageView *logoView;
+
+@end
+
+@implementation QFPerspectiveCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        //_button=[[UIButton alloc]initWithFrame:CGRectMake(10, 10, 300, 110)];
-        //_button.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+        self.backgroundColor=[UIColor clearColor];
+        self.selectionStyle=UITableViewCellSelectionStyleNone;
+        
+        UIView *background=[[UIView alloc]initWithFrame:CGRectMake(10, 10, 300, 110)];
+        background.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
+        [self addSubview:background];
+        
+        _titleLable=[[UILabel alloc]initWithFrame:CGRectMake(130, 5, 160, 18)];
+        _titleLable.backgroundColor=[UIColor clearColor];
+        _titleLable.textColor=[UIColor colorWithHexString:@"666666"];
+        _titleLable.font=[UIFont systemFontOfSize:14];
+        _titleLable.textAlignment = NSTextAlignmentRight;
+        [background addSubview:_titleLable];
+        
+        _synopsisLable=[[UILabel alloc]initWithFrame:CGRectMake(120, 34, 170, 37)];
+        _synopsisLable.backgroundColor=[UIColor clearColor];
+        _synopsisLable.textColor=[UIColor colorWithHexString:@"666666"];
+        _synopsisLable.font=[UIFont systemFontOfSize:12];
+        _synopsisLable.numberOfLines=0;
+        [background addSubview:_synopsisLable];
+        
+        _commentCountLable=[[UILabel alloc]initWithFrame:CGRectMake(160, 90, 60, 15)];
+        _commentCountLable.backgroundColor=[UIColor clearColor];
+        _commentCountLable.textColor=[UIColor colorWithHexString:@"666666"];
+        _commentCountLable.font=[UIFont systemFontOfSize:12];
+        [background addSubview:_commentCountLable];
+        
+        _viewCountLable=[[UILabel alloc]initWithFrame:CGRectMake(230, 90, 60, 15)];
+        _viewCountLable.backgroundColor=[UIColor clearColor];
+        _viewCountLable.textColor=[UIColor colorWithHexString:@"666666"];
+        _viewCountLable.font=[UIFont systemFontOfSize:12];
+        [background addSubview:_viewCountLable];
+        
+        UIImageView *lineView=[[UIImageView alloc]initWithFrame:CGRectMake(110, 27, 180, 1)];
+        lineView.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
+        [background addSubview:lineView];
+        
+        UIView *bgView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 110, 110)];
+        bgView.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
+        bgView.clipsToBounds = YES;
+        [background addSubview:bgView];
+        
+        _logoView=[[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 110, 100)];
+        _logoView.contentMode=UIViewContentModeScaleAspectFill;
+        _logoView.clipsToBounds = YES;
+        [bgView addSubview:_logoView];
+        
+        UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 68, 260)];
+        imageView.image = [UIImage imageNamed:@"视角_阴影.png"];
+        imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+        imageView.center = CGPointMake(95.0, 65.0);
+        [bgView addSubview:imageView];
+        
+        imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 62, 260)];
+        imageView.image = [UIImage imageNamed:@"视角_左起.png"];
+        imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+        imageView.center = CGPointMake(94.5, 65.0);
+        [bgView addSubview:imageView];
     }
     return self;
 }
 
 -(void)configPerspectiveCell:(QFNews *)news;
 {
-    UILabel *titleLable=[[UILabel alloc]initWithFrame:CGRectMake(130, 5, 160, 18)];
-    titleLable.backgroundColor=[UIColor clearColor];
-    titleLable.textColor=[UIColor colorWithHexString:@"666666"];
-    titleLable.font=[UIFont systemFontOfSize:14];
-    titleLable.textAlignment=NSTextAlignmentRight;
+    _titleLable.text=news.title;
+    _synopsisLable.text=news.synopsis;
+    _commentCountLable.text=[NSString stringWithFormat:@"评论：%@",news.commentCount];
+    _viewCountLable.text=[NSString stringWithFormat:@"浏览：%@",news.viewCount];
     
-    UILabel *synopsisLable=[[UILabel alloc]initWithFrame:CGRectMake(120, 34, 170, 37)];
-    synopsisLable.backgroundColor=[UIColor clearColor];
-    synopsisLable.textColor=[UIColor colorWithHexString:@"666666"];
-    synopsisLable.font=[UIFont systemFontOfSize:12];
-    
-    UILabel *commentCountLable=[[UILabel alloc]initWithFrame:CGRectMake(160, 90, 60, 15)];
-    commentCountLable.backgroundColor=[UIColor clearColor];
-    commentCountLable.textColor=[UIColor colorWithHexString:@"666666"];
-    commentCountLable.font=[UIFont systemFontOfSize:12];
-    
-    UILabel *viewCountLable=[[UILabel alloc]initWithFrame:CGRectMake(230, 90, 60, 15)];
-    viewCountLable.backgroundColor=[UIColor clearColor];
-    viewCountLable.textColor=[UIColor colorWithHexString:@"666666"];
-    viewCountLable.font=[UIFont systemFontOfSize:12];
-
-    UIImageView *lineView=[[UIImageView alloc]initWithFrame:CGRectMake(110, 27, 180, 1)];
-    lineView.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 110, 110)];
-    imageView.backgroundColor=[UIColor colorWithHexString:@"0e9fde"];
-    
-    titleLable.text=news.title;
-    synopsisLable.text=news.synopsis;
-    commentCountLable.text=[NSString stringWithFormat:@"评论：%@",news.commentCount];
-    viewCountLable.text=[NSString stringWithFormat:@"浏览：%@",news.viewCount];
-    //[imageView setImageWithURL:[NSURL URLWithString:news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
-    //NSLog(@"%@",news.logo);
-    NSURL *url = [NSURL URLWithString: news.logo];
-    UIImage *image1 = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-    //UIImage *image1=imageView.image;
-    //NSLog(@"%f,%f",image1.size.width,image1.size.height);
-    //UIImage *image1=[UIImage imageNamed:@"社交账号weibo.png"];
-    UIImage *image2=[UIImage imageNamed:@"视角_阴影.png"];
-    UIImage *image3=[UIImage imageNamed:@"视角_左起.png"];
-    UIGraphicsBeginImageContext(imageView.frame.size);
-    //NSLog(@"%f,%f",imageView.frame.size.width,imageView.frame.size.height);
-    [image1 drawInRect:CGRectMake(5, 5, 130, 100)];
-    [image2 drawInRect:CGRectMake(78, 0, 34, 130)];
-    [image3 drawInRect:CGRectMake(79, 0, 31, 130)];
-    UIImage *newImage=UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    imageView.image=newImage;
-    //NSLog(@"title:%@",titleLable.text);
-    //NSLog(@"synopsis:%@",synopsisLable.text);
-
-    UIView *background=[[UIView alloc]initWithFrame:CGRectMake(10, 10, 300, 110)];
-    background.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];;
-    //_button.backgroundColor=[UIColor colorWithHexString:@"f0f4f7"];
-    [background addSubview:titleLable];
-    [background addSubview:synopsisLable];
-    [background addSubview:commentCountLable];
-    [background addSubview:viewCountLable];
-    [background addSubview:imageView];
-    [background addSubview:lineView];
-    [self addSubview:background];
-    self.backgroundColor=[UIColor clearColor];
-    self.selectionStyle=UITableViewCellSelectionStyleNone;
-    
-    
-    
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    [_logoView setImageWithURL:[NSURL URLWithString:news.logo] placeholderImage:[UIImage imageNamed:@"视角文章默认图.png"]];
 }
 
 @end
