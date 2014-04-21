@@ -87,9 +87,9 @@
     [_labelContent setNumberOfLines:0];  //必须是这组值
     
     UIFont *font = [UIFont systemFontOfSize:12];
-    CGSize size = CGSizeMake(282,30000);
+    CGSize size = CGSizeMake(282,NSIntegerMax);
     NSString *newContent=[NSString stringWithFormat:@"%@\n\n评论：%@ 浏览：%@ %@",_news.content,_news.commentCount,_news.viewCount,_news.date];
-    CGSize labelsize = [newContent sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelsize = [newContent boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil].size;
     //UILineBreakModeWordWrap:以空格为界,保留整个单词
     _labelContent.frame = CGRectMake(9, 9, 282, labelsize.height );
     //_labelContent.backgroundColor = [UIColor colorWithHexString:@"f0f4f7"];
@@ -139,10 +139,10 @@
     _request=[[QFNewsManager sharedManager]getCommentsListNews:_news
                                                           Page:_page
                                                        success:^(NSArray *array){
-                                                           //[self _finishLoadMore:YES];
+                                                           [self _finishLoadMore:YES];
                                                        }
                                                        failure:^(NSError *array){
-                                                           //[self _finishLoadMore:YES];
+                                                           [self _finishLoadMore:YES];
                                                        }];
 
 }
@@ -239,8 +239,9 @@
     [labelComment setNumberOfLines:0];
     UIFont *font = [UIFont systemFontOfSize:12];
     NSString *content=comment.content;
-    CGSize size = CGSizeMake(246,3000);
-    CGSize labelsize = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGSize labelsize = [content boundingRectWithSize:CGSizeMake(246,NSIntegerMax) options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil].size;
+    
     //UILineBreakModeWordWrap:以空格为界,保留整个单词
     labelComment.frame = CGRectMake(45, 24, 246, labelsize.height );
     labelComment.backgroundColor=[UIColor clearColor];
@@ -292,7 +293,9 @@
             _firstCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             _firstCell.selectionStyle = UITableViewCellSelectionStyleNone;
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
-            [imageView setImageWithURL:[NSURL URLWithString:_news.logo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){}];
+            [imageView setImageWithURL:[NSURL URLWithString:_news.logo] placeholderImage:[UIImage imageNamed:@"首页PPT默认图.png"]];
+            imageView.clipsToBounds = YES;
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
             [_firstCell addSubview:imageView];
         }
         return _firstCell;
@@ -304,38 +307,20 @@
             _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
             UILabel *LabelTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
             LabelTitle.numberOfLines=0;
-            UIFont *font=[UIFont systemFontOfSize:14];
-            CGSize size = CGSizeMake(280,200);
-            CGSize labelsize = [_news.title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+            CGSize labelsize = [_news.title boundingRectWithSize:CGSizeMake(277.0,NSIntegerMax) options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             
-            if (labelsize.height>50) {
-                LabelTitle.adjustsFontSizeToFitWidth = YES;
-            }
-           
-            //LabelTitle.backgroundColor= [UIColor colorWithPatternImage:[UIImage imageNamed:@"xx.png"]];
-            
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 95.0, 31.0)];
-            imageView.image = [[UIImage imageNamed:@"理财评估_标题底板.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 31.0, 80.0)];
-            CGFloat rate=(labelsize.width)/80;
-            imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity,rate , 1.0);
-            
-            NSLog(@"imageview:%f",imageView.frame.size.width);
-            NSLog(@"image:%f,%f",imageView.image.size.width,imageView.image.size.height);
-            NSLog(@"label:%f",labelsize.width);
-            LabelTitle.frame=CGRectMake(9, 9, imageView.frame.size.width, 30);
-            imageView.frame=CGRectMake(9, 9, imageView.frame.size.width+20, 30);
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 190.0, 62.0)];
+            imageView.image = [[UIImage imageNamed:@"理财评估_标题底板.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 1.0, 0.0, 90.0)];
+            imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+            imageView.frame=CGRectMake(9.0, 9.0, labelsize.width+25.0, 31.0);
             [_secondCell addSubview:imageView];
 
-            LabelTitle.textAlignment = UITextAlignmentCenter;
+            LabelTitle.textAlignment = NSTextAlignmentCenter;
             LabelTitle.backgroundColor=[UIColor clearColor];
-           // LabelTitle.backgroundColor=[UIColor colorWithPatternImage:imageView.image];
-            //[UIColor colorWithHexString:@"0e9fde"];
+            LabelTitle.frame=CGRectMake(18.0, 9.0, labelsize.width, 31.0);
             LabelTitle.font=[UIFont systemFontOfSize:14];
             LabelTitle.textColor=[UIColor colorWithHexString:@"ffffff"];
             LabelTitle.text=_news.title;
-            //UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(labelsize.width+29, 9, 14, 30)];
-            //imageView.image=[UIImage imageNamed:@"文章详情_文章标题底板_右终.png"];
-                        //NSLog(@"title:%@",_news.title);
             [_secondCell addSubview:LabelTitle];
             
 
@@ -405,7 +390,7 @@
         }
     }
     if (row == 0) {
-        return 156.0;
+        return 180.0;
     }
     else if (row == 1) {
         

@@ -14,7 +14,7 @@
 
 - (void)startLoadingTableViewData;
 
-- (void)doneLoadingTableViewData;
+//- (void)doneLoadingTableViewData;
 
 @property(nonatomic,strong)QFNews *news;
 
