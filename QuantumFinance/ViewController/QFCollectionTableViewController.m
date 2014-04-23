@@ -39,7 +39,7 @@
     if (self) {
         // Custom initialization
         _fetchRequest = request;
-        _fetchRequest.fetchBatchSize = 1000;
+        _fetchRequest.fetchBatchSize = 16;
         _cache = cache;
     }
     return self;
